@@ -1,4 +1,7 @@
 {
+  "scripts": {
+    "start": "live-server ./"
+  },
   "dependencies": {
     "particles.js": "^2.0.0"
   }
