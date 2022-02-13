@@ -1,0 +1,46 @@
+//line-animation
+@keyframes title-line-before{
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 20vw;
+  }
+}
+@keyframes title-line-after{
+  0%{
+    width: 0;
+  }
+  100%{
+    width: 79.8vw;
+  }
+}
+
+/*typing animation*/
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #01ffe9 }
+}
+
+// глич эффект
+@keyframes glitch-before {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      clip: rect(random(7) + vw, 34vw, random(7) + vw, 2vw);
+    }
+  }
+}
+@keyframes glitch-after {
+  $steps: 20;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      clip: rect(random(7) + vw, 34vw, random(7) + vw, 2vw);
+    }
+  }
+}
