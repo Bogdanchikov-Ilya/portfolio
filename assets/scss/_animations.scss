@@ -44,3 +44,33 @@
     }
   }
 }
+
+
+@media (max-width: 768px){
+  // линии
+  @keyframes title-line-before{
+    0%{
+      width: 0;
+    }
+    100%{
+      width: 70vw;
+    }
+  }
+  // глич эффект
+  @keyframes glitch-before {
+    $steps: 20;
+    @for $i from 0 through $steps {
+      #{percentage($i*(1/$steps))} {
+        clip: rect(random(20) + vw, 100vw, random(20) + vw, 10vw);
+      }
+    }
+  }
+  @keyframes glitch-after {
+    $steps: 20;
+    @for $i from 0 through $steps {
+      #{percentage($i*(1/$steps))} {
+        clip: rect(random(20) + vw, 100vw, random(20) + vw, 10vw);
+      }
+    }
+  }
+}
