@@ -1,1 +1,1 @@
-particlesJS.load('particles-js', '/assets/particles-config.json');
+particlesJS.load('particles-js', document.location.href + '/assets/particles-config.json');
