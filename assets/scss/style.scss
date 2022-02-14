@@ -106,7 +106,7 @@ h1{
   overflow: hidden;
   border-right: .10em solid #01ffe9;
   white-space: nowrap;
-  //animation: typing 7.5s steps(30, end), blink-caret 1s step-end infinite;
+  animation: blink-caret 1.2s step-end infinite;
   &.glitch{
     &:before,
     &:after {
@@ -150,7 +150,7 @@ h1{
   }
 
   h1{
-    //animation: typing 3.5s steps(19, end), blink-caret 1s step-end infinite;
+    animation: blink-caret 1.2s step-end infinite;
     margin: auto;
     border-right: .10em solid #01ffe9;
     padding: 0;
@@ -161,7 +161,7 @@ h1{
     &:after {
       margin: 0;
       top: 5.2vw !important;
-      left: 1.7vw !important;
+      left: 1.6vw !important;
       padding-right: 23vw !important;
       padding-left: 9vw !important;
       width: 100%;
