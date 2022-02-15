@@ -1,6 +1,9 @@
 @import 'null';
 @import 'animations';
 
+body{
+  overflow: hidden;
+}
 
 .count-particles{
   background: #000022;
@@ -111,11 +114,12 @@ h1{
     &:before,
     &:after {
       content: "portfolio";
+      text-shadow: 3px 3px 0 #01ffe9;
       color: #fff;
       position: absolute;
-      top: 2.5vw;
+      top: 2.6vw;
       left: 0;
-      padding-left: 6vw;
+      padding-left: 6.1vw;
       width: 50vw;
       overflow: hidden;
     }
@@ -160,8 +164,8 @@ h1{
     &:before,
     &:after {
       margin: 0;
-      top: 5.2vw !important;
-      left: 1.6vw !important;
+      top: 5.6vw !important;
+      left: 2.4vw !important;
       padding-right: 23vw !important;
       padding-left: 9vw !important;
       width: 100%;
