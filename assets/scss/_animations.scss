@@ -4,7 +4,7 @@
     width: 0;
   }
   100%{
-    width: 20vw;
+    width: 19vw;
   }
 }
 @keyframes title-line-after{
@@ -13,6 +13,17 @@
   }
   100%{
     width: 79.8vw;
+  }
+}
+
+//media show effect
+@keyframes media-show {
+  0%{
+    margin-right: -100vw;
+  }
+  100%{
+    position: static;
+    margin-right: 0;
   }
 }
 
@@ -26,7 +37,7 @@
   $steps: 20;
   @for $i from 0 through $steps {
     #{percentage($i*(1/$steps))} {
-      clip: rect(random(7) + vw, 34vw, random(7) + vw, 2vw);
+      clip: rect(random(7) + vw, 38vw, random(7) + vw, 2vw);
     }
   }
 }
@@ -34,7 +45,7 @@
   $steps: 20;
   @for $i from 0 through $steps {
     #{percentage($i*(1/$steps))} {
-      clip: rect(random(7) + vw, 34vw, random(7) + vw, 2vw);
+      clip: rect(random(7) + vw, 38vw, random(7) + vw, 2vw);
     }
   }
 }
