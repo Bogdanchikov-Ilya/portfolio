@@ -40,9 +40,7 @@
     top: 3.3vw;
     left: 0;
     width: 19vw;
-    animation-name: title-line-before;
-    animation-duration: 1.5s;
-    animation-timing-function: cubic-bezier(0.750, 0.130, 0.485, 1.030);
+    animation: title-line-before 1.5s cubic-bezier(0.750, 0.130, 0.485, 1.030);
     height: 2px;
     background: $main-color;
   }
@@ -52,9 +50,7 @@
     top: 5vw;
     right: 0;
     width: 79.8vw;
-    animation-name: title-line-after;
-    animation-duration: 1.5s;
-    animation-timing-function: cubic-bezier(0.750, 0.130, 0.485, 1.030);/* custom */
+    animation: title-line-after 1.5s cubic-bezier(0.750, 0.130, 0.485, 1.030);
     height: 2px;
     background: #ffffff;
   }
@@ -67,20 +63,20 @@ h1{
   letter-spacing: 1.1vw;
   font-weight: 800;
   margin-top: 1.2vw;
-  text-shadow: 3px 3px 0 $main-color;
+  text-shadow: 3px 3px 0 #01ffe9;
   z-index: 2;
   text-transform: uppercase;
   color: white;
   font-size: 3vw;
   overflow: hidden;
-  border-right: .10em solid $main-color;
+  border-right: .10em solid #01ffe9;
   white-space: nowrap;
   animation: blink-caret 1.2s step-end infinite;
   &.glitch{
     &:before,
     &:after {
       content: "portfolio";
-      text-shadow: 3px 3px 0 $main-color;
+      text-shadow: 3px 3px 0 #01ffe9;
       color: #fff;
       position: absolute;
       top: 1.3vw;
@@ -108,9 +104,7 @@ h1{
   display: flex;
   align-items: center;
   justify-content: center;
-  animation-name: media-show;
-  animation-duration: 1.5s;
-  animation-timing-function: cubic-bezier(0.750, 0.130, 0.485, 1.030);
+  animation: media-show 1.5s cubic-bezier(0.750, 0.130, 0.485, 1.030);
   svg {
     border-radius: 50%;
     pointer-events: auto;

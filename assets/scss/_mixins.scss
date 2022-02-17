@@ -14,10 +14,12 @@
 
 @mixin glitch-text-animation-mixin {
   &:before {
+    right: -2px;
     text-shadow: -3px 0 red;
     animation: glitch-before 2s linear 0s infinite alternate;
   }
   &:after {
+    right: 2px;
     text-shadow: -3px 0 blue;
     animation: glitch-after 2s linear 0s infinite alternate;
   }
