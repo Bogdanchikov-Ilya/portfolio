@@ -1,6 +1,8 @@
 @import 'null';
 @import 'animations';
+@import 'variables';
 @import 'mixins';
+
 /* ---- particles.js container ---- */
 
 #particles-js{
@@ -15,7 +17,7 @@
   background-repeat: no-repeat;
 }
 
-//content
+// content
 
 .wrapper {
   flex: 1 0 auto !important;
@@ -42,7 +44,7 @@
     animation-duration: 1.5s;
     animation-timing-function: cubic-bezier(0.750, 0.130, 0.485, 1.030);
     height: 2px;
-    background: #01ffe9;
+    background: $main-color;
   }
   &::after{
     content: "";
@@ -58,89 +60,6 @@
   }
 }
 
-.media {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  animation-name: media-show;
-  animation-duration: 1.5s;
-  animation-timing-function: cubic-bezier(0.750, 0.130, 0.485, 1.030);/* custom */
-  a {
-    margin-left: 2vw;
-    position: relative;
-    font-size: 1.5vw;
-    color: #ffffff;
-    font-family: 'Jura', sans-serif;
-    border: 1px solid #01ffe9;
-    pointer-events: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.4vw;
-    &:nth-child(1){
-      &:hover {
-        &:before,
-        &:after {
-          content: "Мое резюме";
-          text-shadow: 3px 3px 0 #01ffe9;
-          color: #fff;
-          position: absolute;
-          top: -1.6vw;
-          left: -2.65vw;
-          right: 0;
-          padding-top: 2vw;
-          padding-left: 3vw;
-          padding-right: 3vw;
-          width: 50vw;
-          overflow: hidden;
-        }
-        &:before {
-          text-shadow: -3px 0 red;
-          animation: glitch-before 2s linear 0s infinite alternate;
-        }
-        &:after {
-          text-shadow: -3px 0 blue;
-          animation: glitch-after 2s linear 0s infinite alternate;
-        }
-      }
-    }
-    &:nth-child(2){
-      &:hover {
-        &:before,
-        &:after {
-          content: "Мой GitHub";
-          text-shadow: 3px 3px 0 #01ffe9;
-          color: #fff;
-          position: absolute;
-          top: -1.6vw;
-          left: -2.65vw;
-          right: 0;
-          padding-top: 2vw;
-          padding-left: 3vw;
-          padding-right: 3vw;
-          width: 50vw;
-          overflow: hidden;
-        }
-        &:before {
-          text-shadow: -3px 0 red;
-          animation: glitch-before 2s linear 0s infinite alternate;
-        }
-        &:after {
-          text-shadow: -3px 0 blue;
-          animation: glitch-after 2s linear 0s infinite alternate;
-        }
-      }
-    }
-  }
-
-  svg {
-    border-radius: 50%;
-    pointer-events: auto;
-    width: 1.5vw;
-    transition: 0.1s ease-in-out;
-  }
-}
-
 h1{
   height: 4vw;
   pointer-events: auto;
@@ -148,20 +67,20 @@ h1{
   letter-spacing: 1.1vw;
   font-weight: 800;
   margin-top: 1.2vw;
-  text-shadow: 3px 3px 0 #01ffe9;
+  text-shadow: 3px 3px 0 $main-color;
   z-index: 2;
   text-transform: uppercase;
   color: white;
   font-size: 3vw;
   overflow: hidden;
-  border-right: .10em solid #01ffe9;
+  border-right: .10em solid $main-color;
   white-space: nowrap;
   animation: blink-caret 1.2s step-end infinite;
   &.glitch{
     &:before,
     &:after {
       content: "portfolio";
-      text-shadow: 3px 3px 0 #01ffe9;
+      text-shadow: 3px 3px 0 $main-color;
       color: #fff;
       position: absolute;
       top: 1.3vw;
@@ -179,6 +98,100 @@ h1{
       left: -3px;
       text-shadow: -3px 0 blue;
       animation: glitch-after 2s linear 0s infinite alternate;
+    }
+  }
+}
+
+// media links
+
+.media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: media-show;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0.750, 0.130, 0.485, 1.030);
+  svg {
+    border-radius: 50%;
+    pointer-events: auto;
+    width: 1.5vw;
+    transition: 0.1s ease-in-out;
+  }
+}
+
+
+.link-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  box-sizing: border-box;
+  margin-left: 2vw;
+  position: relative;
+  transition: color 0.25s;
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    border: 1px solid transparent;
+    transition: width 0.30s ease-out 0.06s, height 0.30s ease-out 0.06s;
+    width: 30%;
+    height: 75%;
+  }
+  &::before {
+    border-top-color:  $main-color;
+    border-left-color: $main-color;
+    top: 0;
+    left: 0;
+  }
+  &::after {
+    border-bottom-color:$main-color;
+    border-right-color: $main-color;
+    bottom: 0;
+    right: 0;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    width: 100%;
+    height: 100%;
+    transition: width 0.30s ease-out 0.06s, height 0.30s ease-out 0.06s;
+  }
+}
+
+a {
+  position: relative;
+  font-size: 1.5vw;
+  color: #ffffff;
+  font-family: 'Jura', sans-serif;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4vw 0.9vw;
+  &#resume {
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Мое резюме";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+  &#github{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Мой GitHub";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
     }
   }
 }
@@ -235,7 +248,7 @@ h1{
   width: 17vw;
   margin: 1vw;
   transition: 0.3s;
-  background: #01ffe9;
+  background: $main-color;
   &:hover {
     cursor: pointer;
     transform: translateZ(10px);
@@ -279,7 +292,7 @@ footer {
     height: 12vw;
     animation: blink-caret 1.2s step-end infinite;
     margin: auto;
-    border-right: .10em solid #01ffe9;
+    border-right: .10em solid $main-color;
     padding: 0;
     text-align: center;
     max-width: 100vw;

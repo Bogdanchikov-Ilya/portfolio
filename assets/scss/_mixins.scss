@@ -1,0 +1,24 @@
+@import 'animations';
+@import 'variables';
+
+@mixin glitch-text-mixin {
+  text-shadow: 3px 3px 0 #01ffe9;
+  position: absolute;
+  right: 0;
+  padding-top: 2vw;
+  padding-left: 3vw;
+  padding-right: 3vw;
+  width: 50vw;
+  overflow: hidden;
+}
+
+@mixin glitch-text-animation-mixin {
+  &:before {
+    text-shadow: -3px 0 red;
+    animation: glitch-before 2s linear 0s infinite alternate;
+  }
+  &:after {
+    text-shadow: -3px 0 blue;
+    animation: glitch-after 2s linear 0s infinite alternate;
+  }
+}
