@@ -16,6 +16,16 @@
   }
 }
 
+//card-show
+@keyframes card-show {
+  0%{
+    margin-top: 100%;
+  }
+  100%{
+    margin-top: unset;
+  }
+}
+
 //media show effect
 @keyframes media-show {
   0%{
@@ -48,6 +58,11 @@
       clip: rect(random(7) + vw, 38vw, random(7) + vw, 2vw);
     }
   }
+}
+
+@keyframes info-block {
+  from, to { opacity: 0 ; width: 0 }
+  100% { opacity: 1; width: 75%; }
 }
 
 

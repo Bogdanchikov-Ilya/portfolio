@@ -188,6 +188,18 @@ a {
       @include glitch-text-animation-mixin
     }
   }
+  &#telegram{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Telegram";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
 }
 
 //cards
@@ -213,25 +225,7 @@ a {
   transform: rotateX(51deg) rotateZ(-25deg) rotateY(10deg);
   transform-style: preserve-3d;
 }
-.container-open {
-  pointer-events: auto;
-  width: auto;
-  display: block;
-  transform: rotate(0);
-  margin: unset;
-  overflow-y: scroll;
-  max-height: 75vh;
-  &::-webkit-scrollbar { /* chrome based */
-    width: 0px;  /* ширина scrollbar'a */
-    background: transparent;  /* опционально */
-    -ms-overflow-style: none;  /* IE 10+ */
-    scrollbar-width: none; /* Firefox */
-  }
-    .card{
-    margin: 0;
-    margin-bottom: 1vw;
-  }
- }
+
 .card {
   display: flex;
   justify-content: center;
@@ -243,17 +237,134 @@ a {
   margin: 1vw;
   transition: 0.3s;
   background: $main-color;
+  animation: card-show 1.5s cubic-bezier(0.54, 0.06, 0.57, 0.92);
   &:hover {
     cursor: pointer;
     transform: translateZ(10px);
   }
   span{
+    font-family: 'Jura', sans-serif;
     text-align: center;
     color: white;
-    font-size: 2.4vw;
+    font-size: 2vw;
     font-weight: 800;
   }
 }
+
+.container-open {
+  pointer-events: auto;
+  width: 17vw;
+  display: flex;
+  flex-wrap: wrap;
+  transform: rotate(0);
+  margin: unset;
+  overflow-y: scroll;
+  height: 80vh;
+  // убираю скроллбар
+  &::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .card{
+    margin: 0 0 1vw 0;
+    &:last-child {
+      margin: 0;
+    }
+  }
+ }
+
+
+//open card content
+
+.info-block{
+  pointer-events: auto;
+  //outline: 1px solid red;
+  width: 75%;
+  height: 80vh;
+  color: white;
+  position: relative;
+  animation: info-block 1s  cubic-bezier(0.54, 0.06, 0.28, 0.97);
+  .close-btn{
+    position: absolute;
+    top: -0.3vw;
+    right: -1.2vw;
+    width: 2.2vw;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 0.5vw;
+    transform: rotate(45deg);
+    span{
+      width: 100%;
+      background: #ffffff;
+      height: 1px;
+      &:nth-child(1){
+        transform: rotate(45deg)
+      }
+      &:nth-child(1){
+        transform: rotate(-90deg)
+      }
+    }
+  }
+  &::before,
+  &::after {
+    box-sizing: inherit;
+    content: '';
+    position: absolute;
+    border: 1px solid transparent;
+  }
+  &::before {
+    border-top-color:  $main-color;
+    border-left-color: $main-color;
+    top: 0;
+    left: 0;
+    width: 96%;
+    height: 75%;
+    //width:61.4vw;
+    //height: 50vh;
+  }
+  &::after {
+    border-bottom-color:$main-color;
+    border-right-color: $main-color;
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 94%;
+    //width:50vw;
+    //height: 75.3vh;
+  }
+  .info-content-wrapper{
+    padding: 1vw;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+  }
+  .info-title, .info-skills, .info-description{
+    font-family: 'Jura', sans-serif;
+    margin-bottom: 0.5vw;
+  }
+  .info-title{
+    font-size: 1.7vw;
+  }
+  .info-skills, .info-description{
+    font-size: 1.2vw;
+  }
+  .info-media{
+    flex: 0;
+    display: flex;
+    .link-wrapper{
+      margin: 0;
+      margin-right: 2vw;
+    }
+  }
+}
+
+
+
+
+
 
 
 // footer
