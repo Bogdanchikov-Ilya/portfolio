@@ -47,6 +47,11 @@ export function loadCard() {
 export function openCard() {
   const htmlCollection = document.querySelectorAll('.card')
   htmlCollection.forEach((item, index) => item.addEventListener('click', () => {
+    // вешаю активнй класс для карточки
+    htmlCollection.forEach(item => {
+      item.classList.remove('card-active')
+    })
+    item.classList.add('card-active')
     // block
     let infoBlock =
       `<div class="info-block">
