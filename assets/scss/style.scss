@@ -302,8 +302,27 @@ a {
 .card-active{
   border: 2px solid red;
 }
-
-
+.slider-navigation{
+  position: absolute;
+  right: 0;
+  pointer-events: auto;
+}
+.slider-pagination{
+  display: block;
+  //display: flex;
+  //flex-direction: column;
+  position: absolute;
+  right: 0;
+  div{
+    margin: 1vw;
+    background: white;
+    width: 1vw;
+    height: 1vw;
+    &.active{
+      background: $main-color;
+    }
+  }
+}
 //open card content
 
 .info-block{
