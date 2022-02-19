@@ -200,6 +200,30 @@ a {
       @include glitch-text-animation-mixin
     }
   }
+  &#show-link{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Посмотреть";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+  &#github-project{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Проект на GitHub";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
 }
 
 //cards
@@ -308,6 +332,7 @@ a {
       }
     }
   }
+  // обводка
   &::before,
   &::after {
     box-sizing: inherit;
@@ -340,23 +365,36 @@ a {
     color: #ffffff;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    height: 93%;
   }
-  .info-title, .info-skills, .info-description{
-    font-family: 'Jura', sans-serif;
-    margin-bottom: 0.5vw;
+  .content-text{
+    .info-title, .info-skills, .info-description{
+      font-family: 'Jura', sans-serif;
+      margin-bottom: 0.5vw;
+    }
+    .info-title{
+      font-size: 1.7vw;
+    }
+    .info-skills, .info-description{
+      font-size: 1.2vw;
+    }
   }
-  .info-title{
-    font-size: 1.7vw;
+  .info-images{
+    img{
+      width: 20vw;
+    }
   }
-  .info-skills, .info-description{
-    font-size: 1.2vw;
-  }
+
   .info-media{
-    flex: 0;
     display: flex;
+    align-content: stretch;
     .link-wrapper{
       margin: 0;
       margin-right: 2vw;
+      a{
+        z-index: 5;
+      }
     }
   }
 }
