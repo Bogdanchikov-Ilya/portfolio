@@ -1,3 +1,5 @@
+import {setDisabledNavigation, renderPagination, scrollToActive} from './main-slider.js'
+
 const data = [
   {
     title: 'Лендинг строительной компании',
@@ -13,43 +15,63 @@ const data = [
   {
     title: 'Vue + Laravel',
     description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    gitHub: 'https://github.com/',
-    image: '../../assets/img/sliders/33333.png'
+    skills: 'SCSS, Swiper Slider',
+    github: 'https://github.com/',
+    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
   {
     title: 'Admin - panel',
     description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    gitHub: 'https://github.com/',
-    image: '../../assets/img/sliders/33333.png'
+    skills: 'SCSS, Swiper Slider',
+    github: 'https://github.com/',
+    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
   {
     title: 'Shop on Nuxt js',
     description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    gitHub: 'https://github.com/',
-    image: '../../assets/img/sliders/33333.png'
+    skills: 'SCSS, Swiper Slider',
+    github: 'https://github.com/',
+    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
 ]
 
+let htmlCollection;
+let selectedCardIndex = 0;
+
 function addCloseEvent() {
   document.querySelector('.close-btn').addEventListener('click', () => {
+    // закрываю блок
     document.querySelector('.cards-container').classList.remove('container-open')
     document.querySelector('.info-block').remove()
+    // убираю активнй класс карточки
+    htmlCollection.forEach(item => {
+      item.classList.remove('card-active')
+    })
   })
 }
 
-export function loadCard() {
+function loadCard() {
   data.forEach((item, index) => {
     let htmlElem = `<div class="card"><span>${item.title}</span></div>`
     document.querySelector('.cards-container').insertAdjacentHTML('beforeend', htmlElem)
   })
+  htmlCollection = document.querySelectorAll('.card')
 }
 
-export function openCard() {
-  const htmlCollection = document.querySelectorAll('.card')
-  htmlCollection.forEach((item, index) => item.addEventListener('click', () => {
-    // block
-    let infoBlock =
-      `<div class="info-block">
+function openCard(item, index){
+  selectedCardIndex = index
+  setDisabledNavigation()
+  renderPagination()
+  htmlCollection.forEach(item => {
+    item.classList.remove('card-active')
+  })
+  item.classList.add('card-active')
+  // block
+  let infoBlock =
+    `<div class="info-block">
         <div class="close-btn">
           <span></span>
           <span></span>
@@ -59,57 +81,66 @@ export function openCard() {
         </div>
       </div>`;
 
-    const textContent = `<div class="content-text">
+  const textContent = `<div class="content-text">
             <h2 class="info-title">${data[index].title}</h2>
             <p class="info-description">${data[index].description}</p>
             <span class="info-skills">${data[index].skills}</span>
           </div>`
 
-    let contentImages = `<div class="info-images"></div>`
+  let contentImages = `<div class="info-images"></div>`
 
-    const contentMedia = `<div class="info-media"></div>`
+  const contentMedia = `<div class="info-media"></div>`
 
-    // открываю карточку детально
-    document.querySelector('.cards-container').classList.add('container-open')
+  // открываю карточку детально
+  document.querySelector('.cards-container').classList.add('container-open')
 
-    // добавляю блок с информацией о проекте
-    const block = document.querySelector('.info-block')
-    if (block)
-      block.remove()
-    document.querySelector('.cards-wrapper').insertAdjacentHTML('afterbegin', infoBlock)
+  // добавляю блок с информацией о проекте
+  const block = document.querySelector('.info-block')
+  if (block)
+    block.remove()
+  document.querySelector('.cards-wrapper').insertAdjacentHTML('afterbegin', infoBlock)
 
-    // вешаю фунцкию на кнопу закрытия
-    addCloseEvent()
+  // вешаю фунцкию на кнопу закрытия
+  addCloseEvent()
 
-    // добавляю текст
-    if (data[index].description) {
-      document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', textContent)
-    }
-    // добавляю картинки
-    if (data[index].images.length) {
-      document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', contentImages)
-      data[index].images.forEach((item) => {
-        document.querySelector('.info-images').insertAdjacentHTML('beforeend', `<img src="${item}">`)
-      })
-    }
+  // добавляю текст
+  if (data[index].description) {
+    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', textContent)
+  }
+  // добавляю картинки
+  if (data[index].images.length) {
+    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', contentImages)
+    data[index].images.forEach((item) => {
+      document.querySelector('.info-images').insertAdjacentHTML('beforeend', `<img src="${item}">`)
+    })
+  }
 
-    // добавляю контейнер для кнопок
-    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', contentMedia)
+  // добавляю контейнер для кнопок
+  document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', contentMedia)
 
-    // добавляю сами кнопки
-    const showBtn = `<div class="link-wrapper">
+  // добавляю сами кнопки
+  const showBtn = `<div class="link-wrapper">
                          <a href="${data[index].link}" id="show-link" target="_blank">Посмотреть</a>
                        </div>`
-    const githubBtn = `<div class="link-wrapper">
+  const githubBtn = `<div class="link-wrapper">
                             <a href="${data[index].github}" id="github-project" target="_blank">Проект на GitHub</a>
                          </div>`
-    if (data[index].link) {
-      document.querySelector('.info-media').insertAdjacentHTML('beforeend', showBtn)
-    }
-    if (data[index].github) {
-      document.querySelector('.info-media').insertAdjacentHTML('beforeend', githubBtn)
-    }
+  if (data[index].link) {
+    document.querySelector('.info-media').insertAdjacentHTML('beforeend', showBtn)
+  }
+  if (data[index].github) {
+    document.querySelector('.info-media').insertAdjacentHTML('beforeend', githubBtn)
+  }
+  scrollToActive()
+}
+
+// функция открывающая карточку по клику
+function clickOpenCard() {
+  htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
+   openCard(item, index)
   }))
 }
 
+
+export { loadCard, htmlCollection, selectedCardIndex, clickOpenCard, openCard }
 
