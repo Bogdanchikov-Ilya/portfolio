@@ -24,15 +24,20 @@ nextBtn.addEventListener('click', () => {
 })
 
 function renderPagination() {
-  console.log(htmlCollection.length)
   const paginationContainer = document.querySelector('.slider-pagination')
   paginationContainer.innerHTML = ''
   for (let i = 0; i < htmlCollection.length; i++) {
     (i === selectedCardIndex)
     ? paginationContainer.insertAdjacentHTML('beforeend', '<div class="active"></div>')
     : paginationContainer.insertAdjacentHTML('beforeend', '<div></div>')
-
   }
+  // вешаю клик на каждый эелемент пагинации
+  const paginationCollection = document.querySelector('.slider-pagination')
+  Array.from(paginationCollection.children).forEach((child, index) => {
+    child.addEventListener('click', () => {
+      openCard(htmlCollection[index], index)
+    })
+  });
 }
 
 function scrollToActive() {

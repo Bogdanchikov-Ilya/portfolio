@@ -304,30 +304,56 @@ a {
   border: 2px solid red;
 }
 .slider-navigation{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 60vh;
   position: absolute;
   right: 0;
   pointer-events: auto;
+  button{
+    cursor: pointer;
+    outline: none;
+    border: 1px solid white;
+    width: 4vw;
+    height: 4vw;
+    background: transparent;
+    color: #ffffff;
+    &:disabled{
+      opacity: 0.5;
+      &:hover{
+        border: 1px solid white;
+      }
+    }
+    &:hover{
+      border: 1px solid $main-color;
+    }
+  }
 }
 .slider-pagination{
-  display: block;
-  //display: flex;
-  //flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: absolute;
   right: 0;
+  pointer-events: auto;
   div{
+    cursor: pointer;
     margin: 1vw;
     background: white;
     width: 1vw;
     height: 1vw;
+    transition: 2s;
     &.active{
       background: $main-color;
+      transform: scale(1.1);
+      transition: 2s;
     }
   }
 }
 //open card content
 
 .info-block{
-  pointer-events: auto;
   //outline: 1px solid red;
   width: 75%;
   height: 80vh;
@@ -335,6 +361,7 @@ a {
   position: relative;
   animation: info-block 1s  cubic-bezier(0.54, 0.06, 0.28, 0.97);
   .close-btn{
+    pointer-events: auto;
     position: absolute;
     top: -0.3vw;
     right: -1.2vw;
@@ -396,6 +423,7 @@ a {
     .info-title, .info-skills, .info-description{
       font-family: 'Jura', sans-serif;
       margin-bottom: 0.5vw;
+      pointer-events: auto;
     }
     .info-title{
       font-size: 1.7vw;
@@ -407,10 +435,12 @@ a {
   .info-images{
     img{
       width: 20vw;
+      pointer-events: auto;
     }
   }
 
   .info-media{
+    pointer-events: auto;
     display: flex;
     align-content: stretch;
     .link-wrapper{
