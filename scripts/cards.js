@@ -15,20 +15,26 @@ const data = [
   {
     title: 'Vue + Laravel',
     description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    gitHub: 'https://github.com/',
-    image: '../../assets/img/sliders/33333.png'
+    skills: 'SCSS, Swiper Slider',
+    github: 'https://github.com/',
+    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
   {
     title: 'Admin - panel',
     description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    gitHub: 'https://github.com/',
-    image: '../../assets/img/sliders/33333.png'
+    skills: 'SCSS, Swiper Slider',
+    github: 'https://github.com/',
+    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
   {
     title: 'Shop on Nuxt js',
     description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    gitHub: 'https://github.com/',
-    image: '../../assets/img/sliders/33333.png'
+    skills: 'SCSS, Swiper Slider',
+    github: 'https://github.com/',
+    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
 ]
 
@@ -128,6 +134,7 @@ function openCard(item, index){
   scrollToActive()
 }
 
+// функция открывающая карточку по клику
 function clickOpenCard() {
   htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
    openCard(item, index)

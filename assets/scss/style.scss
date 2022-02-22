@@ -276,6 +276,7 @@ a {
 }
 
 .container-open {
+  scroll-behavior: smooth;
   pointer-events: auto;
   width: 17vw;
   display: flex;
