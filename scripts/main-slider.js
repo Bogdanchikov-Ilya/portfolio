@@ -12,7 +12,7 @@ function setDisabledNavigation(){
   ? nextBtn.disabled = true
   :nextBtn.disabled = false;
 }
-
+// navigation
 prevBtn.addEventListener('click', () => {
   const prevIndex = selectedCardIndex - 1
   openCard(htmlCollection[prevIndex], prevIndex)
@@ -21,6 +21,19 @@ prevBtn.addEventListener('click', () => {
 nextBtn.addEventListener('click', () => {
   const nextIndex = selectedCardIndex + 1
   openCard(htmlCollection[nextIndex], nextIndex)
+})
+
+document.addEventListener('keydown',(e) => {
+  if(selectedCardIndex !== null && selectedCardIndex !== undefined){
+    if(e.keyCode === 37 || e.keyCode === 38){
+      const prevIndex = selectedCardIndex - 1
+      openCard(htmlCollection[prevIndex], prevIndex)
+    }
+    if(e.keyCode === 39 || e.keyCode === 40) {
+      const nextIndex = selectedCardIndex + 1
+      openCard(htmlCollection[nextIndex], nextIndex)
+    }
+  }
 })
 
 function renderPagination() {

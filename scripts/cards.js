@@ -41,6 +41,17 @@ const data = [
 let htmlCollection;
 let selectedCardIndex = 0;
 
+function showSlider (status){
+  if(status) {
+    document.querySelector('.slider-navigation').style.display = 'flex'
+    document.querySelector('.slider-pagination').style.display = 'flex'
+  }
+  else{
+    document.querySelector('.slider-navigation').style.display = 'none'
+    document.querySelector('.slider-pagination').style.display = 'none'
+  }
+}
+
 function addCloseEvent() {
   document.querySelector('.close-btn').addEventListener('click', () => {
     // закрываю блок
@@ -50,6 +61,8 @@ function addCloseEvent() {
     htmlCollection.forEach(item => {
       item.classList.remove('card-active')
     })
+    // убираю слайдер
+    showSlider(false)
   })
 }
 
@@ -62,6 +75,7 @@ function loadCard() {
 }
 
 function openCard(item, index){
+  showSlider(true)
   selectedCardIndex = index
   setDisabledNavigation()
   renderPagination()
@@ -139,6 +153,7 @@ function clickOpenCard() {
   htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
    openCard(item, index)
   }))
+  scrollToActive()
 }
 
 
