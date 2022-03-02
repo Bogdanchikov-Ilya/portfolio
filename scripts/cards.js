@@ -53,7 +53,24 @@ function showSlider (status){
 }
 
 function addCloseEvent() {
-  document.querySelector('.close-btn').addEventListener('click', () => {
+  // вешаю события
+  document.addEventListener('keydown', closeSliderOnKeyDown)
+  document.querySelector('.close-btn').addEventListener('click', closeSlider)
+  // функции закрытия
+  function closeSliderOnKeyDown(e){
+    if(e.keyCode === 27){
+      // закрываю блок
+      document.querySelector('.cards-container').classList.remove('container-open')
+      document.querySelector('.info-block').remove()
+      // убираю активнй класс карточки
+      htmlCollection.forEach(item => {
+        item.classList.remove('card-active')
+      })
+      showSlider(false)
+      document.removeEventListener('keydown', closeSliderOnKeyDown)
+    }
+  }
+  function closeSlider(e){
     // закрываю блок
     document.querySelector('.cards-container').classList.remove('container-open')
     document.querySelector('.info-block').remove()
@@ -61,9 +78,9 @@ function addCloseEvent() {
     htmlCollection.forEach(item => {
       item.classList.remove('card-active')
     })
-    // убираю слайдер
     showSlider(false)
-  })
+    document.removeEventListener('keydown', closeSliderOnKeyDown)
+  }
 }
 
 function loadCard() {
@@ -153,7 +170,6 @@ function clickOpenCard() {
   htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
    openCard(item, index)
   }))
-  scrollToActive()
 }
 
 
