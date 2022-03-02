@@ -318,6 +318,7 @@ a {
 
 .slider-navigation{
   display: none;
+  animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
   justify-content: space-between;
   height: 70vh;
@@ -347,6 +348,7 @@ a {
 }
 .slider-pagination{
   display: none;
+  animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
   justify-content: space-between;
   position: absolute;
