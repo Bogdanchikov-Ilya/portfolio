@@ -25,13 +25,15 @@ nextBtn.addEventListener('click', () => {
 
 document.addEventListener('keydown',(e) => {
   if(selectedCardIndex !== null && selectedCardIndex !== undefined){
-    if(e.keyCode === 37 || e.keyCode === 38){
+    if(e.keyCode === 37 & selectedCardIndex !== 0 || e.keyCode === 38 & selectedCardIndex !== 0) {
       const prevIndex = selectedCardIndex - 1
       openCard(htmlCollection[prevIndex], prevIndex)
     }
     if(e.keyCode === 39 || e.keyCode === 40) {
-      const nextIndex = selectedCardIndex + 1
-      openCard(htmlCollection[nextIndex], nextIndex)
+      if(selectedCardIndex + 1 < htmlCollection.length) {
+        const nextIndex = selectedCardIndex + 1
+        openCard(htmlCollection[nextIndex], nextIndex)
+      }
     }
   }
 })
