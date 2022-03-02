@@ -55,22 +55,9 @@ function showSlider (status){
 function addCloseEvent() {
   // вешаю события
   document.addEventListener('keydown', closeSliderOnKeyDown)
-  document.querySelector('.close-btn').addEventListener('click', closeSlider)
+  document.querySelector('.close-btn').addEventListener('click', closeSliderOnClick)
   // функции закрытия
-  function closeSliderOnKeyDown(e){
-    if(e.keyCode === 27){
-      // закрываю блок
-      document.querySelector('.cards-container').classList.remove('container-open')
-      document.querySelector('.info-block').remove()
-      // убираю активнй класс карточки
-      htmlCollection.forEach(item => {
-        item.classList.remove('card-active')
-      })
-      showSlider(false)
-      document.removeEventListener('keydown', closeSliderOnKeyDown)
-    }
-  }
-  function closeSlider(e){
+  function close () {
     // закрываю блок
     document.querySelector('.cards-container').classList.remove('container-open')
     document.querySelector('.info-block').remove()
@@ -80,6 +67,14 @@ function addCloseEvent() {
     })
     showSlider(false)
     document.removeEventListener('keydown', closeSliderOnKeyDown)
+  }
+  function closeSliderOnKeyDown(e){
+    if(e.keyCode === 27){
+      close()
+    }
+  }
+  function closeSliderOnClick(e){
+    close()
   }
 }
 
