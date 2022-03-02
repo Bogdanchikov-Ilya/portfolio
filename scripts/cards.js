@@ -164,6 +164,9 @@ function openCard(item, index){
 function clickOpenCard() {
   htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
    openCard(item, index)
+    setTimeout(() => {
+      scrollToActive()
+    }, 700)
   }))
 }
 

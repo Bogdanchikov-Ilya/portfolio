@@ -29,11 +29,9 @@ document.addEventListener('keydown',(e) => {
       const prevIndex = selectedCardIndex - 1
       openCard(htmlCollection[prevIndex], prevIndex)
     }
-    if(e.keyCode === 39 || e.keyCode === 40) {
-      if(selectedCardIndex + 1 < htmlCollection.length) {
-        const nextIndex = selectedCardIndex + 1
-        openCard(htmlCollection[nextIndex], nextIndex)
-      }
+    if(e.keyCode === 39 & selectedCardIndex + 1 < htmlCollection.length || e.keyCode === 40 & selectedCardIndex + 1 < htmlCollection.length) {
+      const nextIndex = selectedCardIndex + 1
+      openCard(htmlCollection[nextIndex], nextIndex)
     }
   }
 })
