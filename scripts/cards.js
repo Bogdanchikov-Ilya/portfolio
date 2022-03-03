@@ -47,8 +47,12 @@ function showSlider (status){
     document.querySelector('.slider-pagination').style.display = 'flex'
   }
   else{
-    document.querySelector('.slider-navigation').style.display = 'none'
-    document.querySelector('.slider-pagination').style.display = 'none'
+    document.querySelector('.slider-navigation').classList.add('close-animation')
+    document.querySelector('.slider-pagination').classList.add('close-animation')
+    setTimeout(() => {
+      document.querySelector('.slider-navigation').style.display = 'none'
+      document.querySelector('.slider-pagination').style.display = 'none'
+    }, 850)
   }
 }
 
@@ -58,13 +62,17 @@ function addCloseEvent() {
   document.querySelector('.close-btn').addEventListener('click', closeSliderOnClick)
   // функции закрытия
   function close () {
+    document.querySelector('.info-block').classList.add('close-animation')
     // закрываю блок
     document.querySelector('.cards-container').classList.remove('container-open')
-    document.querySelector('.info-block').remove()
+    setTimeout(() => {
+      document.querySelector('.info-block').remove()
+    }, 1000)
     // убираю активнй класс карточки
     htmlCollection.forEach(item => {
       item.classList.remove('card-active')
     })
+
     showSlider(false)
     document.removeEventListener('keydown', closeSliderOnKeyDown)
   }
@@ -123,6 +131,7 @@ function openCard(item, index){
   // добавляю блок с информацией о проекте
   const block = document.querySelector('.info-block')
   if (block)
+
     block.remove()
   document.querySelector('.cards-wrapper').insertAdjacentHTML('afterbegin', infoBlock)
 

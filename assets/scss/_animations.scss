@@ -65,6 +65,11 @@
   100% { opacity: 1; width: 78%; }
 }
 
+@keyframes info-block-reverse {
+  from, to { opacity: 1 ; width: 78% }
+  100% { opacity: 0; width: 0; }
+}
+
 @keyframes hide-block {
   from, to { opacity: 1;}
   100% { opacity: 0.1; }
@@ -73,6 +78,11 @@
 @keyframes slider-nav-pag-show {
   from, to { opacity: 0.1; margin-right: -100%; }
   100% { opacity: 1; margin-right: unset;}
+}
+
+@keyframes slider-nav-pag-reverse {
+  from, to { opacity: 1; margin-right: unset; }
+  100% { opacity: 0.1; margin-right: -100%;}
 }
 
 

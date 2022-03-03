@@ -325,6 +325,9 @@ a {
   position: absolute;
   right: 2vw;
   pointer-events: auto;
+  &.close-animation{
+    animation: 0.85s slider-nav-pag-reverse;
+  }
   button{
     cursor: pointer;
     outline: none;
@@ -354,6 +357,9 @@ a {
   position: absolute;
   right: 2vw;
   pointer-events: auto;
+  &.close-animation{
+    animation: 0.85s slider-nav-pag-reverse;
+  }
   div{
     cursor: pointer;
     margin: 1vw;
@@ -376,10 +382,9 @@ a {
   height: 80vh;
   color: white;
   position: relative;
-  animation: info-block 1s  cubic-bezier(0.54, 0.06, 0.28, 0.97);
-  &.close{
-    opacity: 0.1;
-    animation: hide-block 2s ease-in-out;
+  animation: info-block 1s cubic-bezier(0.54, 0.06, 0.28, 0.97);
+  &.close-animation{
+    animation: info-block-reverse 1s cubic-bezier(0.54, 0.06, 0.28, 0.97);
   }
   .close-btn{
     pointer-events: auto;
