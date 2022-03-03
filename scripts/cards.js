@@ -52,6 +52,8 @@ function showSlider (status){
     setTimeout(() => {
       document.querySelector('.slider-navigation').style.display = 'none'
       document.querySelector('.slider-pagination').style.display = 'none'
+      document.querySelector('.slider-navigation').classList.remove('close-animation')
+      document.querySelector('.slider-pagination').classList.remove('close-animation')
     }, 850)
   }
 }
