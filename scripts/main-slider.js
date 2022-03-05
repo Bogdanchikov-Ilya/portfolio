@@ -55,7 +55,8 @@ function renderPagination() {
 
 function scrollToActive() {
   const scrollContainer = document.querySelector('.container-open')
-  htmlCollection[selectedCardIndex].parentNode.scrollTop = htmlCollection[selectedCardIndex].offsetTop - ((scrollContainer.scrollHeight + scrollContainer.scrollTop) / 4) / 1.5
+  let scrollValue = htmlCollection[0].offsetHeight * selectedCardIndex
+  scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
 }
 
 export { setDisabledNavigation, renderPagination, scrollToActive }

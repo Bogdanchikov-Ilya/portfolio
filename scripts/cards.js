@@ -129,6 +129,7 @@ function openCard(item, index){
 
   // открываю карточку детально
   document.querySelector('.cards-container').classList.add('container-open')
+  // document.querySelector('.cards-container').style.transform = 'translate3d(0px, -716px, 0px);'
 
   // добавляю блок с информацией о проекте
   const block = document.querySelector('.info-block')
@@ -177,10 +178,43 @@ function clickOpenCard() {
    openCard(item, index)
     setTimeout(() => {
       scrollToActive()
+      scrollOnKeyDown()
     }, 700)
   }))
 }
 
+function scrollOnKeyDown() {
+  // document.querySelector('.card').onmousedown = function (e) {
+  //   console.log(e.offsetY)
+  // }
+  // document.querySelector('.card').onmouseup = function () {
+  //   console.log('onmouseup')
+  // }
 
-export { loadCard, htmlCollection, selectedCardIndex, clickOpenCard, openCard }
+
+  // let mousemoveY;
+  // document.addEventListener('mousemove', (e) => {
+  //   mousemoveY = e.offsetY;
+  //   console.log(mousemoveY)
+  // })
+  function mousemoveItem (e) {
+    let scrollContainer = document.querySelector('.container-open')
+    console.log(scrollContainer.scrollTop)
+    console.log('e offsetY: ' + e.offsetY)
+    scrollContainer.scrollTop = e.offsetY
+  }
+
+  htmlCollection.forEach((item, index) => {
+    item.onmousedown = function (e) {
+      item.addEventListener('mousemove', mousemoveItem)
+    }
+    item.onmouseup = function () {
+      console.log('onmouseup generate')
+      item.removeEventListener('mousemove', mousemoveItem)
+    }
+  })
+}
+
+
+export { loadCard, htmlCollection, selectedCardIndex, clickOpenCard, openCard, scrollOnKeyDown }
 

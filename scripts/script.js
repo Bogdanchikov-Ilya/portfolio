@@ -1,6 +1,6 @@
 import { typing } from './typing-effect.js'
 import { glitch } from './glitch.js';
-import { clickOpenCard, loadCard } from './cards.js';
+import { clickOpenCard, scrollOnKeyDown, loadCard } from './cards.js';
 import { renderPagination } from './main-slider.js'
 
 window.onload = function() {
@@ -10,6 +10,6 @@ window.onload = function() {
   // загружаю карточи
   loadCard()
   clickOpenCard()
-
+  // scrollOnKeyDown()
   renderPagination()
 }
