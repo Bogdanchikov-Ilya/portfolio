@@ -66,6 +66,10 @@ function addCloseEvent() {
   function close () {
     document.querySelector('.info-block').classList.add('close-animation')
     // закрываю блок
+    document.querySelector('.container-open').classList.add('default-transform')
+    document.querySelector('.container-open').style = null;
+    document.querySelector('.card-container-wrapper').classList.remove('open')
+
     document.querySelector('.cards-container').classList.remove('container-open')
     setTimeout(() => {
       document.querySelector('.info-block').remove()
@@ -105,6 +109,8 @@ function openCard(item, index){
     item.classList.remove('card-active')
   })
   item.classList.add('card-active')
+  document.querySelector('.card-container-wrapper').classList.add('open')
+  document.querySelector('.cards-container').classList.remove('default-transform')
   // block
   let infoBlock =
     `<div class="info-block">
@@ -133,9 +139,14 @@ function openCard(item, index){
 
   // добавляю блок с информацией о проекте
   const block = document.querySelector('.info-block')
-  if (block)
-
+  if (block) {
     block.remove()
+    scrollToActive()
+  } else {
+    setTimeout(() => {
+      scrollToActive()
+    }, 1000)
+  }
   document.querySelector('.cards-wrapper').insertAdjacentHTML('afterbegin', infoBlock)
 
   // вешаю фунцкию на кнопу закрытия
@@ -169,7 +180,8 @@ function openCard(item, index){
   if (data[index].github) {
     document.querySelector('.info-media').insertAdjacentHTML('beforeend', githubBtn)
   }
-  scrollToActive()
+
+
 }
 
 // функция открывающая карточку по клику
@@ -177,7 +189,6 @@ function clickOpenCard() {
   htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
    openCard(item, index)
     setTimeout(() => {
-      scrollToActive()
       scrollOnKeyDown()
     }, 700)
   }))

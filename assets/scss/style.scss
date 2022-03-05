@@ -246,8 +246,10 @@ a {
   align-items: center;
   //height: 100vh;
   transition: 1s;
-  transform: rotateX(51deg) rotateZ(-25deg) rotateY(10deg);
   transform-style: preserve-3d;
+  &.default-transform {
+    transform: rotateX(51deg) rotateZ(-25deg) rotateY(10deg);
+  }
 }
 
 .card {
@@ -287,7 +289,12 @@ a {
   position: relative;
   z-index: 10;
   overflow: hidden;
-
+  display: flex;
+  align-items: center;
+  height: 100%;
+  &.open{
+    height: unset;
+  }
 }
 
 .container-open {
