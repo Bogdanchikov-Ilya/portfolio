@@ -210,9 +210,7 @@ function scrollOnKeyDown() {
   // })
   function mousemoveItem (e) {
     let scrollContainer = document.querySelector('.container-open')
-    console.log(scrollContainer.scrollTop)
-    console.log('e offsetY: ' + e.offsetY)
-    scrollContainer.scrollTop = e.offsetY
+    scrollContainer.style.transform = `rotate(0) translate3d(0px, -${e.pageY}px, 0px)`
   }
 
   htmlCollection.forEach((item, index) => {
