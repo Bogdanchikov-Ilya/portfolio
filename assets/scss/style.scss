@@ -245,8 +245,9 @@ a {
   justify-content: center;
   align-items: center;
   //height: 100vh;
-  transition: 1s;
+  //transition: 1s;
   transform-style: preserve-3d;
+  //transition: none;
   &.default-transform {
     transform: rotateX(51deg) rotateZ(-25deg) rotateY(10deg);
   }

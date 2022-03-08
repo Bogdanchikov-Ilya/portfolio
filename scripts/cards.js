@@ -208,20 +208,58 @@ function scrollOnKeyDown() {
   //   mousemoveY = e.offsetY;
   //   console.log(mousemoveY)
   // })
+  let startPos;
+  let endPos;
+  let realPos;
+  let prevPos = 0;
+  let test;
   function mousemoveItem (e) {
+    realPos = e.pageY
+    let topValue = prevPos + (realPos - startPos);
+    test = topValue
     let scrollContainer = document.querySelector('.container-open')
-    scrollContainer.style.transform = `rotate(0) translate3d(0px, -${e.pageY}px, 0px)`
+    scrollContainer.style.transform = `rotate(0) translate3d(0px, ${topValue}px, 0px)`
   }
+  document.querySelector('.card-container-wrapper').onmousedown = function(e) {
+    startPos = e.pageY
+    document.querySelector('.card-container-wrapper').addEventListener('mousemove', mousemoveItem)
+  }
+  window.onmouseup = function(e) {
+    let strValue = document.querySelector('.container-open').style.transform.indexOf('3d')
+    let transformStyleValues = document.querySelector('.container-open').style.transform.substr(strValue + 2).replace(/[a-zа-яё()]/gi, '').split(", ")
 
-  htmlCollection.forEach((item, index) => {
-    item.onmousedown = function (e) {
-      item.addEventListener('mousemove', mousemoveItem)
-    }
-    item.onmouseup = function () {
-      console.log('onmouseup generate')
-      item.removeEventListener('mousemove', mousemoveItem)
-    }
-  })
+    prevPos = Number(transformStyleValues[1])
+    endPos = e.pageY
+    document.querySelector('.card-container-wrapper').removeEventListener('mousemove', mousemoveItem)
+    // if (prevPos < endPos) {
+    //   const nextIndex = selectedCardIndex + 1
+    //   openCard(htmlCollection[nextIndex], nextIndex)
+    // } else if (prevPos > endPos){
+    //   const prevIndex = selectedCardIndex - 1
+    //   openCard(htmlCollection[prevIndex], prevIndex)
+    // }
+  }
+  // document.querySelector('.card-container-wrapper').onmousedown = function (e) {
+  //   startPos = e.pageY
+  //   document.querySelector('.card-container-wrapper').addEventListener('mousemove', mousemoveItem)
+  // }
+  // window.onmouseup = function (e) {
+  //   endPos = e.pageY
+  //   // если при отпускании onmouse up transformtranslate3d Y > 0 то возвращать transformtranslate3d Y = 0
+  //   document.querySelector('.card-container-wrapper').removeEventListener('mousemove', mousemoveItem)
+  //
+  //   // брать текущий transformtranslate3d Y и если поосле скролла щт больше чем был до этого то NextSlider(), если меньше то PrevSlide()
+  // }
+
+  // htmlCollection.forEach((item, index) => {
+  //   document.querySelector('.container-open').onmousedown = function (e) {
+  //     document.querySelector('.container-open').addEventListener('mousemove', mousemoveItem)
+  //   }
+  //   document.querySelector('.container-open').onmouseup = function () {
+  //     console.log('onmouseup generate')
+  //     document.querySelector('.container-open').removeEventListener('mousemove', mousemoveItem)
+  //   }
+  // })
 }
 
 
