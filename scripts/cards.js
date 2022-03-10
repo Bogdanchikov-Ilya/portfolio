@@ -39,7 +39,7 @@ const data = [
 ]
 
 let htmlCollection;
-let selectedCardIndex = 0;
+let selectedCardIndex = null
 
 function showSlider (status){
   if(status) {
@@ -187,62 +187,58 @@ function openCard(item, index){
 // функция открывающая карточку по клику
 function clickOpenCard() {
   htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
-   openCard(item, index)
-    setTimeout(() => {
-      scrollOnKeyDown()
-    }, 700)
+    if(index !== selectedCardIndex){
+      openCard(item, index)
+      setTimeout(() => {
+        scrollOnKeyDown()
+      }, 700)
+    }
   }))
 }
 
 function scrollOnKeyDown() {
-  // document.querySelector('.card').onmousedown = function (e) {
-  //   console.log(e.offsetY)
-  // }
-  // document.querySelector('.card').onmouseup = function () {
-  //   console.log('onmouseup')
-  // }
-
-
-  // let mousemoveY;
-  // document.addEventListener('mousemove', (e) => {
-  //   mousemoveY = e.offsetY;
-  //   console.log(mousemoveY)
-  // })
   let scrollContainer;
   let startPos;
-  let endPos;
   let realPos;
   let prevPos = 0;
+  let topValue;
 
   function mousemoveItem (e) {
     realPos = e.pageY
-    let topValue = prevPos + (realPos - startPos);
+    topValue = prevPos + (realPos - startPos);
     scrollContainer = document.querySelector('.container-open')
     scrollContainer.style.transform = `rotate(0) translate3d(0px, ${topValue}px, 0px)`
   }
+
   document.querySelector('.card-container-wrapper').onmousedown = function(e) {
     document.querySelector('.cards-container').style.transition = 'none'
     startPos = e.pageY
     document.querySelector('.card-container-wrapper').addEventListener('mousemove', mousemoveItem)
   }
+
   window.onmouseup = function(e) {
+    document.querySelector('.card-container-wrapper').removeEventListener('mousemove', mousemoveItem)
+
+    let prevSlidePos = prevPos
     document.querySelector('.cards-container').style.transition = '1s'
     let strValue = document.querySelector('.container-open').style.transform.indexOf('3d')
     let transformStyleValues = document.querySelector('.container-open').style.transform.substr(strValue + 2).replace(/[a-zа-яё()]/gi, '').split(", ")
     prevPos = Number(transformStyleValues[1])
-    endPos = e.pageY
-    document.querySelector('.card-container-wrapper').removeEventListener('mousemove', mousemoveItem)
-    // console.log(prevPos)
-    console.log(document.querySelector('.card').clientHeight * (htmlCollection.length - 1))
 
     if(prevPos > 0) {
       prevPos = 0
       scrollContainer.style.transform = `rotate(0) translate3d(0px, 0px, 0px)`
     }
-    console.log(document.querySelector('.card').clientHeight * (htmlCollection.length - 1))
     if(prevPos < (document.querySelector('.card').clientHeight * (htmlCollection.length - 1)) * -1) {
       scrollContainer.style.transform = `rotate(0) translate3d(0px, -${document.querySelector('.card').clientHeight * (htmlCollection.length - 1)}px, 0px)`
     }
+    // if(prevSlidePos > prevPos) {
+    //   const nextIndex = selectedCardIndex + 1
+    //   openCard(htmlCollection[nextIndex], nextIndex)
+    // } else if(prevSlidePos < prevPos){
+    //   const prevIndex = selectedCardIndex - 1
+    //   openCard(htmlCollection[prevIndex], prevIndex)
+    // }
   }
 }
 
