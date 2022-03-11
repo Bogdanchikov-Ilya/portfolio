@@ -1,5 +1,5 @@
-import {setDisabledNavigation, renderPagination, scrollToActive} from './main-slider.js'
-
+import { setDisabledNavigation, renderPagination, scrollToActive } from './main-slider.js'
+import { infoSliderInit, renderSlides } from './card-slider.js';
 const data = [
   {
     title: 'Лендинг строительной компании',
@@ -10,7 +10,7 @@ const data = [
     skills: 'SCSS, Swiper Slider',
     github: 'https://github.com/Bogdanchikov-Ilya/railway-construction',
     link: 'https://bogdanchikov-ilya.github.io/railway-construction',
-    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
+    images: ['../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png', '../../assets/img/sliders/33333.png']
   },
   {
     title: 'Vue + Laravel',
@@ -81,6 +81,7 @@ function addCloseEvent() {
 
     showSlider(false)
     document.removeEventListener('keydown', closeSliderOnKeyDown)
+    selectedCardIndex = null
   }
   function closeSliderOnKeyDown(e){
     if(e.keyCode === 27){
@@ -101,6 +102,22 @@ function loadCard() {
 }
 
 function openCard(item, index){
+  function addButtons() {
+    // добавляю контейнер для кнопок
+    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', `<div class="info-media-btn"></div>`)
+    // добавляю кнопки
+    let buttonContainer = document.querySelector('.info-media-btn')
+    if (data[index].link) {
+      buttonContainer.insertAdjacentHTML('beforeend', `<div class="link-wrapper">
+                         <a href="${data[index].link}" id="show-link" target="_blank">Посмотреть</a>
+                       </div>`)
+    }
+    if (data[index].github) {
+      buttonContainer.insertAdjacentHTML('beforeend', `<div class="link-wrapper">
+                            <a href="${data[index].github}" id="github-project" target="_blank">Проект на GitHub</a>
+                         </div>`)
+    }
+  }
   showSlider(true)
   selectedCardIndex = index
   setDisabledNavigation()
@@ -111,6 +128,8 @@ function openCard(item, index){
   item.classList.add('card-active')
   document.querySelector('.card-container-wrapper').classList.add('open')
   document.querySelector('.cards-container').classList.remove('default-transform')
+
+
   // block
   let infoBlock =
     `<div class="info-block">
@@ -129,13 +148,12 @@ function openCard(item, index){
             <span class="info-skills">${data[index].skills}</span>
           </div>`
 
-  let contentImages = `<div class="info-images"></div>`
+  // info-images-slider
 
-  const contentMedia = `<div class="info-media"></div>`
+
 
   // открываю карточку детально
   document.querySelector('.cards-container').classList.add('container-open')
-  // document.querySelector('.cards-container').style.transform = 'translate3d(0px, -716px, 0px);'
 
   // добавляю блок с информацией о проекте
   const block = document.querySelector('.info-block')
@@ -157,31 +175,19 @@ function openCard(item, index){
     document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', textContent)
   }
   // добавляю картинки
-  if (data[index].images.length) {
-    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', contentImages)
-    data[index].images.forEach((item) => {
-      document.querySelector('.info-images').insertAdjacentHTML('beforeend', `<img src="${item}">`)
-    })
-  }
+  // if(data[index].images.length){
+  //   renderSlides(index)
+  // }
+  // slider navigation & pagination
+
 
   // добавляю контейнер для кнопок
-  document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', contentMedia)
 
-  // добавляю сами кнопки
-  const showBtn = `<div class="link-wrapper">
-                         <a href="${data[index].link}" id="show-link" target="_blank">Посмотреть</a>
-                       </div>`
-  const githubBtn = `<div class="link-wrapper">
-                            <a href="${data[index].github}" id="github-project" target="_blank">Проект на GitHub</a>
-                         </div>`
-  if (data[index].link) {
-    document.querySelector('.info-media').insertAdjacentHTML('beforeend', showBtn)
+
+  if(data[index].images.length){
+    infoSliderInit(index)
   }
-  if (data[index].github) {
-    document.querySelector('.info-media').insertAdjacentHTML('beforeend', githubBtn)
-  }
-
-
+  addButtons()
 }
 
 // функция открывающая карточку по клику
@@ -190,58 +196,57 @@ function clickOpenCard() {
     if(index !== selectedCardIndex){
       openCard(item, index)
       setTimeout(() => {
-        scrollOnKeyDown()
+        // scrollOnKeyDown()
       }, 700)
     }
   }))
 }
 
-function scrollOnKeyDown() {
-  let scrollContainer;
-  let startPos;
-  let realPos;
-  let prevPos = 0;
-  let topValue;
+// function scrollOnKeyDown() {
+//   let scrollContainer;
+//   let startPos;
+//   let realPos;
+//   let prevPos = 0;
+//   let topValue;
+//   function mousemoveItem (e) {
+//     realPos = e.pageY
+//     topValue = prevPos + (realPos - startPos);
+//     scrollContainer = document.querySelector('.container-open')
+//     scrollContainer.style.transform = `rotate(0) translate3d(0px, ${topValue}px, 0px)`
+//   }
+//
+//   document.querySelector('.card-container-wrapper').onmousedown = function(e) {
+//     document.querySelector('.cards-container').style.transition = 'none'
+//     startPos = e.pageY
+//     document.querySelector('.card-container-wrapper').addEventListener('mousemove', mousemoveItem)
+//   }
+//
+//   window.onmouseup = function(e) {
+//     let prevSlidePos = prevPos
+//     document.querySelector('.cards-container').style.transition = '1s'
+//     let strValue = document.querySelector('.container-open').style.transform.indexOf('3d')
+//     let transformStyleValues = document.querySelector('.container-open').style.transform.substr(strValue + 2).replace(/[a-zа-яё()]/gi, '').split(", ")
+//     prevPos = Number(transformStyleValues[1])
+//     document.querySelector('.card-container-wrapper').removeEventListener('mousemove', mousemoveItem)
+//
+//     if(prevPos > 0) {
+//       prevPos = 0
+//       scrollContainer.style.transform = `rotate(0) translate3d(0px, 0px, 0px)`
+//     }
+//     if(prevPos < (document.querySelector('.card').clientHeight * (htmlCollection.length - 1)) * -1) {
+//       scrollContainer.style.transform = `rotate(0) translate3d(0px, -${document.querySelector('.card').clientHeight * (htmlCollection.length - 1)}px, 0px)`
+//     }
+//
+//     // if(prevSlidePos > prevPos) {
+//     //   const nextIndex = selectedCardIndex + 1
+//     //   openCard(htmlCollection[nextIndex], nextIndex)
+//     // } else if(prevSlidePos < prevPos){
+//     //   const prevIndex = selectedCardIndex - 1
+//     //   openCard(htmlCollection[prevIndex], prevIndex)
+//     // }
+//   }
+// }
 
-  function mousemoveItem (e) {
-    realPos = e.pageY
-    topValue = prevPos + (realPos - startPos);
-    scrollContainer = document.querySelector('.container-open')
-    scrollContainer.style.transform = `rotate(0) translate3d(0px, ${topValue}px, 0px)`
-  }
 
-  document.querySelector('.card-container-wrapper').onmousedown = function(e) {
-    document.querySelector('.cards-container').style.transition = 'none'
-    startPos = e.pageY
-    document.querySelector('.card-container-wrapper').addEventListener('mousemove', mousemoveItem)
-  }
-
-  window.onmouseup = function(e) {
-    document.querySelector('.card-container-wrapper').removeEventListener('mousemove', mousemoveItem)
-
-    let prevSlidePos = prevPos
-    document.querySelector('.cards-container').style.transition = '1s'
-    let strValue = document.querySelector('.container-open').style.transform.indexOf('3d')
-    let transformStyleValues = document.querySelector('.container-open').style.transform.substr(strValue + 2).replace(/[a-zа-яё()]/gi, '').split(", ")
-    prevPos = Number(transformStyleValues[1])
-
-    if(prevPos > 0) {
-      prevPos = 0
-      scrollContainer.style.transform = `rotate(0) translate3d(0px, 0px, 0px)`
-    }
-    if(prevPos < (document.querySelector('.card').clientHeight * (htmlCollection.length - 1)) * -1) {
-      scrollContainer.style.transform = `rotate(0) translate3d(0px, -${document.querySelector('.card').clientHeight * (htmlCollection.length - 1)}px, 0px)`
-    }
-    // if(prevSlidePos > prevPos) {
-    //   const nextIndex = selectedCardIndex + 1
-    //   openCard(htmlCollection[nextIndex], nextIndex)
-    // } else if(prevSlidePos < prevPos){
-    //   const prevIndex = selectedCardIndex - 1
-    //   openCard(htmlCollection[prevIndex], prevIndex)
-    // }
-  }
-}
-
-
-export { loadCard, htmlCollection, selectedCardIndex, clickOpenCard, openCard, scrollOnKeyDown }
+export { loadCard, htmlCollection, selectedCardIndex, clickOpenCard, openCard, data }
 
