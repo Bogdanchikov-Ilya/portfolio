@@ -1,3 +1,5 @@
+@import 'variables';
+
 //line-animation
 @keyframes title-line-before{
   0%{
@@ -39,7 +41,7 @@
 
 @keyframes blink-caret {
   from, to { border-color: transparent }
-  50% { border-color: #01ffe9 }
+  50% { border-color: $main-color }
 }
 
 // глич эффект

@@ -1,0 +1,42 @@
+@import 'variables';
+
+.slider-navigation {
+  button{
+    pointer-events: auto;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid white;
+    width: 3vw;
+    height: 3vw;
+    background: transparent;
+    color: #ffffff;
+    &:disabled{
+      opacity: 0.5;
+      &:hover{
+        border: 1px solid white;
+        color: white;
+      }
+    }
+    &:hover{
+      border: 1px solid $main-color;
+      color: $main-color;
+    }
+  }
+}
+
+.slider-pagination {
+  div {
+    pointer-events: auto;
+    cursor: pointer;
+    margin: 1vw;
+    background: white;
+    width: 1vw;
+    height: 1vw;
+    transition: 2s;
+    &.active{
+      background: $main-color;
+      transform: scale(1.1);
+      transition: 2s;
+    }
+  }
+}

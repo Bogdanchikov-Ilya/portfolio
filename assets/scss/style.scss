@@ -2,6 +2,7 @@
 @import 'animations';
 @import 'variables';
 @import 'mixins';
+@import 'slider';
 
 /* ---- particles.js container ---- */
 
@@ -63,20 +64,20 @@ h1{
   letter-spacing: 1.1vw;
   font-weight: 800;
   margin-top: 1.2vw;
-  text-shadow: 3px 3px 0 #01ffe9;
+  text-shadow: 3px 3px 0 $main-color;
   z-index: 2;
   text-transform: uppercase;
   color: white;
   font-size: 3vw;
   overflow: hidden;
-  border-right: .10em solid #01ffe9;
+  border-right: .10em solid $main-color;
   white-space: nowrap;
   animation: blink-caret 1.2s step-end infinite;
   &.glitch{
     &:before,
     &:after {
       content: "portfolio";
-      text-shadow: 3px 3px 0 #01ffe9;
+      text-shadow: 3px 3px 0 $main-color;
       color: #fff;
       position: absolute;
       top: 1.3vw;
@@ -339,7 +340,9 @@ a {
   }
 }
 
-.slider-navigation{
+// main slider control
+
+.main-slider-navigation{
   display: none;
   animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
@@ -351,28 +354,9 @@ a {
   &.close-animation{
     animation: 0.85s slider-nav-pag-reverse;
   }
-  button{
-    cursor: pointer;
-    outline: none;
-    border: 1px solid white;
-    width: 3vw;
-    height: 3vw;
-    background: transparent;
-    color: #ffffff;
-    &:disabled{
-      opacity: 0.5;
-      &:hover{
-        border: 1px solid white;
-        color: white;
-      }
-    }
-    &:hover{
-      border: 1px solid $main-color;
-      color: $main-color;
-    }
-  }
+
 }
-.slider-pagination{
+.main-slider-pagination{
   display: none;
   animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
@@ -382,19 +366,6 @@ a {
   pointer-events: auto;
   &.close-animation{
     animation: 0.85s slider-nav-pag-reverse;
-  }
-  div{
-    cursor: pointer;
-    margin: 1vw;
-    background: white;
-    width: 1vw;
-    height: 1vw;
-    transition: 2s;
-    &.active{
-      background: $main-color;
-      transform: scale(1.1);
-      transition: 2s;
-    }
   }
 }
 //open card content
@@ -501,9 +472,18 @@ a {
     transform: translate3d(0px, 0px, 0px);
     display: flex;
     flex-wrap: nowrap;
-    img{
-      width: 20vw;
+    align-items: center;
+    margin-bottom: 1.5vw;
+    .slide{
+      width: auto;
+      height: 16vw;
       pointer-events: auto;
+      margin-right: 2vw;
+      img{
+        width: auto;
+        object-fit: cover;
+        height: 100%;
+      }
     }
   }
 
@@ -511,6 +491,7 @@ a {
     pointer-events: auto;
     display: flex;
     align-content: stretch;
+    margin-bottom: -1.8vw;
     .link-wrapper{
       margin: 0;
       margin-right: 2vw;
@@ -521,22 +502,22 @@ a {
   }
 }
 
+//info card slider
+
 .info-slider-navigation{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   margin: auto;
 }
 
 .info-slider-pagination{
+  pointer-events: auto;
   margin: auto;
   display: flex;
-  div{
-    margin-right: 1vw;
-    width: 2vw;
-    height: 2vw;
-    background: red;
-  }
+  justify-content: space-between;
+  margin-top: -2.6vw;
 }
-
-
 
 
 // footer

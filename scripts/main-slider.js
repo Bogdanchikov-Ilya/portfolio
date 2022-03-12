@@ -37,7 +37,7 @@ document.addEventListener('keydown',(e) => {
 })
 
 function renderPagination() {
-  const paginationContainer = document.querySelector('.slider-pagination')
+  const paginationContainer = document.querySelector('.main-slider-pagination')
   paginationContainer.innerHTML = ''
   for (let i = 0; i < htmlCollection.length; i++) {
     (i === selectedCardIndex)
@@ -45,7 +45,7 @@ function renderPagination() {
     : paginationContainer.insertAdjacentHTML('beforeend', '<div></div>')
   }
   // вешаю клик на каждый эелемент пагинации
-  const paginationCollection = document.querySelector('.slider-pagination')
+  const paginationCollection = document.querySelector('.main-slider-pagination')
   Array.from(paginationCollection.children).forEach((child, index) => {
     child.addEventListener('click', () => {
       openCard(htmlCollection[index], index)
