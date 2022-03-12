@@ -271,12 +271,13 @@ a {
   pointer-events: auto;
   width: 16vw;
   margin: 1vw;
-  transition: 0.3s;
+  transition: 0.6s;
   background: $main-color;
   animation: card-show 1.5s cubic-bezier(0.54, 0.06, 0.57, 0.92);
   &:hover {
     cursor: pointer;
-    transform: translateZ(10px);
+    transform: rotateX(-180deg);
+
   }
   span{
     font-family: 'Jura', sans-serif;
@@ -473,12 +474,20 @@ a {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
+    height: 18vw;
     margin-bottom: 1.5vw;
     .slide{
       width: auto;
       height: 16vw;
       pointer-events: auto;
       margin-right: 2vw;
+      transition: width 0.30s ease-out 0.06s, height 0.30s ease-out 0.06s;
+      &.slide-active{
+        transition: width 0.30s ease-out 0.06s, height 0.30s ease-out 0.06s;
+        border: 2px solid $main-color;
+        height: 17vw;
+        padding: 3px
+      }
       img{
         width: auto;
         object-fit: cover;

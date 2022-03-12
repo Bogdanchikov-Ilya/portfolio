@@ -185,7 +185,7 @@ function openCard(item, index){
 
 
   if(data[index].images.length){
-    infoSliderInit(index)
+    infoSliderInit(data[index].images)
   }
   addButtons()
 }
