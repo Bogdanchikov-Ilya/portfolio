@@ -47,13 +47,14 @@ function showSlider (status){
     document.querySelector('.slider-pagination').style.display = 'flex'
   }
   else{
-    document.querySelector('.slider-navigation').classList.add('close-animation')
-    document.querySelector('.slider-pagination').classList.add('close-animation')
+    console.log('false sliders selected')
+    document.querySelector('.main-slider-navigation').classList.add('close-animation')
+    document.querySelector('.main-slider-pagination').classList.add('close-animation')
     setTimeout(() => {
-      document.querySelector('.slider-navigation').style.display = 'none'
-      document.querySelector('.slider-pagination').style.display = 'none'
-      document.querySelector('.slider-navigation').classList.remove('close-animation')
-      document.querySelector('.slider-pagination').classList.remove('close-animation')
+      document.querySelector('.main-slider-navigation').style.display = 'none'
+      document.querySelector('.main-slider-pagination').style.display = 'none'
+      document.querySelector('.main-slider-navigation').classList.remove('close-animation')
+      document.querySelector('.main-slider-pagination').classList.remove('close-animation')
     }, 850)
   }
 }

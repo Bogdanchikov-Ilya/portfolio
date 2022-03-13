@@ -32,11 +32,11 @@
     background: white;
     width: 1vw;
     height: 1vw;
-    transition: 0.5s;
+    //transition: 0.5s;
     &.active{
       background: $main-color;
       transform: scale(1.1);
-      transition: 0.5s;
+      //transition: 0.5s;
     }
   }
 }
