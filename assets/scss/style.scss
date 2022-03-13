@@ -255,14 +255,9 @@ a {
 }
 
 .card {
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none;   /* Chrome/Safari/Opera */
-  -khtml-user-select: none;    /* Konqueror */
-  -moz-user-select: none;      /* Firefox */
-  -ms-user-select: none;       /* Internet Explorer/Edge */
   user-select: none;
 
-
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -274,17 +269,53 @@ a {
   transition: 0.6s;
   background: $main-color;
   animation: card-show 1.5s cubic-bezier(0.54, 0.06, 0.57, 0.92);
-  &:hover {
-    cursor: pointer;
-    transform: rotateX(-180deg);
-
+  transition-delay: 0.1s;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  .front,
+  .back{
+    height: 100%;
+    width: 100%;
+    transform-style: preserve-3d;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    //text-align: center;
+    //border-radius: 0.4em;
+    outline: 0.25vw solid white;
+    //border-radius: 4px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    backface-visibility: hidden;
+    word-wrap: break-word;
+    span{
+      font-family: 'Jura', sans-serif;
+      text-align: center;
+      color: white;
+      font-size: 2vw;
+      font-weight: 800;
+      word-wrap: break-word;
+    }
   }
-  span{
-    font-family: 'Jura', sans-serif;
-    text-align: center;
-    color: white;
-    font-size: 2vw;
-    font-weight: 800;
+  .back{
+    background: transparent;
+    transform: rotateX(180deg);
+  }
+  &:hover {
+    background: transparent;
+    transform: rotateX(180deg);
+    transform-style: preserve-3d;
+    transition-delay: 0.25s;
+    box-shadow: none;
+    border: none;
+    outline: none;
+    //span{
+    //  transform: translateZ(10px);
+    //  transform-style: preserve-3d;
+    //  transition-delay: 0.25s;
+    //}
   }
 }
 
