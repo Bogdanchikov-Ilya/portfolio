@@ -155,7 +155,7 @@ h1{
   }
 }
 
-a {
+.link-wrapper a {
   position: relative;
   font-size: 1.5vw;
   color: #ffffff;
@@ -269,7 +269,7 @@ a {
   transition: 0.6s;
   background: $main-color;
   animation: card-show 1.5s cubic-bezier(0.54, 0.06, 0.57, 0.92);
-  transition-delay: 0.1s;
+  transition-delay: 0.25s;
   cursor: pointer;
   transform-style: preserve-3d;
   .front,
@@ -300,8 +300,33 @@ a {
     }
   }
   .back{
+    display: flex;
+    flex-wrap: wrap;
     background: transparent;
     transform: rotateX(180deg);
+    cursor: default;
+    a, span{
+      font-family: 'Jura', sans-serif;
+      font-size: 2.3vw;
+      height: 50%;
+      text-align: center;
+      vertical-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      width: 100%;
+      outline: 2px solid white;
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+      &:active{
+        margin: 0;
+        padding: 0;
+        border: none;
+        outline: none;
+      }
+    }
   }
   &:hover {
     background: transparent;
@@ -351,7 +376,17 @@ a {
   .card{
     margin: 0 0 1vw 0;
     box-shadow: none;
+    &.card-active{
+      outline: 4px solid white;
+      background: transparent;
+      transform: scale(0.90);
+      &:hover{
+        background-color: transparent;
+        transform: scale(0.90) !important;
+      }
+    }
     &:hover{
+      background-color: rgba(255, 255, 255, 0.2);
       transform: scale(0.95);
     }
     &:last-child {
@@ -359,18 +394,6 @@ a {
     }
   }
  }
-
-.card-active{
-  //box-shadow: none;
-  outline: 4px solid white;
-  //min-height: 13vw;
-  //width: 15vw;
-  box-shadow: 0px 0px 6px 6px rgb(1, 255, 233);
-  transform: scale(0.90);
-  &:hover{
-    transform: scale(0.90) !important;
-  }
-}
 
 // main slider control
 
