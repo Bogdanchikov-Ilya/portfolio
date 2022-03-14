@@ -96,7 +96,7 @@ function addCloseEvent() {
 
 function loadCard() {
   data.forEach((item, index) => {
-    let htmlElem = `<div class="card"><div class="front"><span>${item.title}</span></div><div class="back"><span id="open-card-link">Подробнее</span><a href="${item.github}" target="_blank">GitHub</a><div></div>`
+    let htmlElem = `<div class="card"><div class="front"><span>${item.title}</span></div><div class="back"><span id="open-card-link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
     document.querySelector('.cards-container').insertAdjacentHTML('beforeend', htmlElem)
   })
   htmlCollection = document.querySelectorAll('.card')

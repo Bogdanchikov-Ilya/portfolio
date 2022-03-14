@@ -309,9 +309,20 @@ h1{
     background: transparent;
     transform: rotateX(180deg);
     cursor: default;
+    a{
+      font-size: 2.4vw;
+      img{
+        margin-right: 0.7vw;
+      }
+    }
+    span{
+      font-size: 2vw;
+      cursor: pointer;
+      letter-spacing: 2px;
+    }
     a, span{
+      letter-spacing: 2px;
       font-family: 'Jura', sans-serif;
-      font-size: 2.3vw;
       height: 50%;
       text-align: center;
       vertical-align: center;
