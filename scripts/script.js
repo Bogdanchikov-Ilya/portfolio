@@ -1,6 +1,6 @@
 import { typing } from './typing-effect.js'
 import { glitch } from './glitch.js';
-import { clickOpenCard, loadCard } from './cards.js';
+import { addListenerClickOpenCard, loadCard, openCard } from './cards.js';
 import { renderPagination } from './main-slider.js'
 window.onload = function() {
   // подгражю эффект печати
@@ -8,7 +8,7 @@ window.onload = function() {
   glitch()
   // загружаю карточи
   loadCard()
-  clickOpenCard()
+  addListenerClickOpenCard(document.querySelectorAll('#open-card-link'))
   // scrollOnKeyDown()
   renderPagination()
 }

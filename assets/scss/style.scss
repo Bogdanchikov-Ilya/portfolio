@@ -263,7 +263,7 @@ h1{
   align-items: center;
   box-shadow: -15px 12px 8px 0px rgba(0, 144, 255, 0.2);
   min-height: 14vw;
-  pointer-events: auto;
+  //pointer-events: auto;
   width: 16vw;
   margin: 1vw;
   transition: 0.6s;
@@ -272,6 +272,7 @@ h1{
   transition-delay: 0.25s;
   cursor: pointer;
   transform-style: preserve-3d;
+  pointer-events: auto;
   .front,
   .back{
     height: 100%;
@@ -298,6 +299,9 @@ h1{
       font-weight: 800;
       word-wrap: break-word;
     }
+  }
+  .front{
+    pointer-events: none !important;
   }
   .back{
     display: flex;
@@ -374,10 +378,16 @@ h1{
     scrollbar-width: none;
   }
   .card{
+    .front{
+      pointer-events: auto !important;
+    }
+    //transition-delay: 0s;
     margin: 0 0 1vw 0;
     box-shadow: none;
     &.card-active{
       outline: 4px solid white;
+      transition: .2s;
+      transition-delay: 0.2s;
       background: transparent;
       transform: scale(0.90);
       &:hover{

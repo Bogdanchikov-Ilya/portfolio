@@ -191,15 +191,20 @@ function openCard(item, index){
   addButtons()
 }
 
-// функция открывающая карточку по клику
-function clickOpenCard() {
-  htmlCollection.forEach((item, index) => item.addEventListener('click',() => {
+let test;
+
+function addListenerClickOpenCard(collection) {
+  collection.forEach((item, index) => item.addEventListener('click',() => {
+    addListenerClickOpenCard(document.querySelectorAll('.front'))
     if(index !== selectedCardIndex){
-      openCard(item, index)
-      setTimeout(() => {
-        // scrollOnKeyDown()
-      }, 700)
+      openCard(htmlCollection[index], index)
     }
+  }))
+}
+
+function removeListenerClickOpenCard(collection) {
+  collection.forEach((item, index) => item.removeEventListener('click', () => {
+    //????????????
   }))
 }
 
@@ -249,5 +254,5 @@ function clickOpenCard() {
 // }
 
 
-export { loadCard, htmlCollection, selectedCardIndex, clickOpenCard, openCard, data }
+export { loadCard, htmlCollection, selectedCardIndex, addListenerClickOpenCard, openCard, data }
 
