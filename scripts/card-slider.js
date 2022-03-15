@@ -11,8 +11,7 @@ let selectedImageIndex;
 let contentImages = `<div class="info-images"><div class="info-images-slider"></div></div>`
 let sliderContainer;
 
-function prevSlide() {
-  selectedImageIndex -= 1
+function changeSlide() {
   for(let i = 0; i < slidesHtmlCollection.length; i++) {
     if(slidesHtmlCollection[i].classList.contains('slide-active') && i !== selectedImageIndex){
       slidesHtmlCollection[i].classList.remove('slide-active')
@@ -25,18 +24,14 @@ function prevSlide() {
   setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, slidesHtmlCollection)
 }
 
+function prevSlide() {
+  selectedImageIndex -= 1
+  changeSlide()
+}
+
 function nextSlide() {
   selectedImageIndex += 1
-  for(let i = 0; i < slidesHtmlCollection.length; i++) {
-    if(slidesHtmlCollection[i].classList.contains('slide-active') && i !== selectedImageIndex){
-      slidesHtmlCollection[i].classList.remove('slide-active')
-      paginationHtmlCollection[i].classList.remove('active')
-    } else if(i === selectedImageIndex) {
-      slidesHtmlCollection[i].classList.add('slide-active')
-      paginationHtmlCollection[i].classList.add('active')
-    }
-  }
-  setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, slidesHtmlCollection)
+  changeSlide()
 }
 
 function renderSlides() {

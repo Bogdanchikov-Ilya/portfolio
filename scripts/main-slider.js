@@ -11,8 +11,6 @@ function setDisabledNavigation(index, prevBtn, nextBtn, collection){
   (index >= collection.length - 1)
   ? nextBtn.disabled = true
   :nextBtn.disabled = false;
-
-  console.log(collection)
 }
 // navigation
 prevBtn.addEventListener('click', () => {
