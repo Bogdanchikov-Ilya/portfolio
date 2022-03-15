@@ -1,17 +1,15 @@
+import { setDisabledNavigation } from "./main-slider.js";
+
 let data;
 let slidesHtmlCollection;
 let paginationHtmlCollection;
 let prevBtn;
 let nextBtn;
 
-let selectedImageIndex = 0;
+let selectedImageIndex;
 
 let contentImages = `<div class="info-images"><div class="info-images-slider"></div></div>`
 let sliderContainer;
-
-function rerenderSlider() {
-
-}
 
 function prevSlide() {
   selectedImageIndex -= 1
@@ -24,6 +22,7 @@ function prevSlide() {
       paginationHtmlCollection[i].classList.add('active')
     }
   }
+  setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, slidesHtmlCollection)
 }
 
 function nextSlide() {
@@ -37,6 +36,7 @@ function nextSlide() {
       paginationHtmlCollection[i].classList.add('active')
     }
   }
+  setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, slidesHtmlCollection)
 }
 
 function renderSlides() {
@@ -48,6 +48,12 @@ function renderSlides() {
       : document.querySelector('.info-images-slider').insertAdjacentHTML('beforeend', `<div class="slide"><img src="${document.location.href + item}"></div>`)
     })
   slidesHtmlCollection = document.querySelectorAll('.slide')
+
+  slidesHtmlCollection.forEach((item, index) => {
+    item.addEventListener('click', () => {
+      console.log('sadsa')
+    })
+  })
 
 }
 
@@ -78,15 +84,14 @@ function renderInfoPagination () {
 
 
 function infoSliderInit(imagesArray) {
+  selectedImageIndex = 0;
   data = imagesArray
   renderSlides()
 
   sliderContainer = document.querySelector('.info-images')
   renderInfoNavigation()
   renderInfoPagination()
-
-
-
+  setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, paginationHtmlCollection)
 }
 
 export { infoSliderInit, renderSlides }

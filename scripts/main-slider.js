@@ -3,14 +3,16 @@ import { htmlCollection, selectedCardIndex, openCard } from "./cards.js";
 const prevBtn = document.querySelector('#prev')
 const nextBtn = document.querySelector('#next')
 
-function setDisabledNavigation(){
-  (selectedCardIndex <= 0)
+function setDisabledNavigation(index, prevBtn, nextBtn, collection){
+  (index <= 0)
   ? prevBtn.disabled = true
   :prevBtn.disabled = false;
 
-  (selectedCardIndex >= htmlCollection.length - 1)
+  (index >= collection.length - 1)
   ? nextBtn.disabled = true
   :nextBtn.disabled = false;
+
+  console.log(collection)
 }
 // navigation
 prevBtn.addEventListener('click', () => {
@@ -37,6 +39,7 @@ document.addEventListener('keydown',(e) => {
 })
 
 function renderPagination() {
+  setDisabledNavigation(selectedCardIndex, prevBtn, nextBtn, htmlCollection)
   const paginationContainer = document.querySelector('.main-slider-pagination')
   paginationContainer.innerHTML = ''
   for (let i = 0; i < htmlCollection.length; i++) {
@@ -54,6 +57,7 @@ function renderPagination() {
 }
 
 function scrollToActive() {
+  // setDisabledNavigation(selectedCardIndex, prevBtn, nextBtn, htmlCollection)
   const scrollContainer = document.querySelector('.container-open')
   let scrollValue = htmlCollection[0].offsetHeight * selectedCardIndex
   scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
