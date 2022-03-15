@@ -11,6 +11,7 @@
     background: transparent;
     color: #ffffff;
     &:disabled{
+      cursor: default;
       opacity: 0.5;
       &:hover{
         border: 1px solid white;

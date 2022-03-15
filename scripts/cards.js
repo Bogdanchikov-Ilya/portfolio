@@ -1,4 +1,4 @@
-import {  renderPagination, scrollToActive } from './main-slider.js'
+import {  renderPagination, scrollToActiveVertical } from './main-slider.js'
 import { infoSliderInit } from './card-slider.js';
 const data = [
   {
@@ -130,7 +130,6 @@ function openCard(item, index){
   document.querySelector('.card-container-wrapper').classList.add('open')
   document.querySelector('.cards-container').classList.remove('default-transform')
 
-
   // block
   let infoBlock =
     `<div class="info-block">
@@ -149,10 +148,6 @@ function openCard(item, index){
             <span class="info-skills">${data[index].skills}</span>
           </div>`
 
-  // info-images-slider
-
-
-
   // открываю карточку детально
   document.querySelector('.cards-container').classList.add('container-open')
 
@@ -160,10 +155,10 @@ function openCard(item, index){
   const block = document.querySelector('.info-block')
   if (block) {
     block.remove()
-    scrollToActive()
+    scrollToActiveVertical()
   } else {
     setTimeout(() => {
-      scrollToActive()
+      scrollToActiveVertical()
     }, 1000)
   }
   document.querySelector('.cards-wrapper').insertAdjacentHTML('afterbegin', infoBlock)
@@ -175,16 +170,8 @@ function openCard(item, index){
   if (data[index].description) {
     document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', textContent)
   }
-  // добавляю картинки
-  // if(data[index].images.length){
-  //   renderSlides(index)
-  // }
-  // slider navigation & pagination
 
-
-  // добавляю контейнер для кнопок
-
-
+  // добавляю слайдер с картинкми
   if(data[index].images.length){
     infoSliderInit(data[index].images)
   }
@@ -201,4 +188,3 @@ function addListenerClickOpenCard(collection) {
 }
 
 export { loadCard, htmlCollection, selectedCardIndex, addListenerClickOpenCard, openCard, data }
-

@@ -27,11 +27,13 @@ function changeSlide() {
 function prevSlide() {
   selectedImageIndex -= 1
   changeSlide()
+  scrollToActiveHorizontal()
 }
 
 function nextSlide() {
   selectedImageIndex += 1
   changeSlide()
+  scrollToActiveHorizontal()
 }
 
 function renderSlides() {
@@ -77,6 +79,10 @@ function renderInfoPagination () {
   paginationHtmlCollection = document.querySelector('.info-slider-pagination').getElementsByTagName('*')
 }
 
+function scrollToActiveHorizontal() {
+  let scrollValue = document.querySelector('.slide-active').offsetWidth * selectedImageIndex
+  document.querySelector('.info-images-slider').style.transform = `rotate(0) translate3d(-${scrollValue}px, 0px, 0px)`
+}
 
 function infoSliderInit(imagesArray) {
   selectedImageIndex = 0;
