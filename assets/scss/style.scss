@@ -246,7 +246,7 @@ h1{
   justify-content: center;
   align-items: center;
   //height: 100vh;
-  transition: 1s;
+  transition: 0.9s;
   transform-style: preserve-3d;
   //transition: none;
   &.default-transform {
@@ -392,7 +392,6 @@ h1{
     .front{
       pointer-events: auto !important;
     }
-    //transition-delay: 0s;
     margin: 0 0 1vw 0;
     box-shadow: none;
     &.card-active{
@@ -546,13 +545,15 @@ h1{
 
   .info-images-slider{
     transform: translate3d(0px, 0px, 0px);
+    transition: 0.8s;
+    transform-style: preserve-3d;
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
     height: 18vw;
     margin-bottom: 1.5vw;
-    transition: 0.4s;
     .slide{
+      cursor: pointer;
       width: auto;
       height: 16vw;
       pointer-events: auto;

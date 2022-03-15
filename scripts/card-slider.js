@@ -22,18 +22,17 @@ function changeSlide() {
     }
   }
   setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, slidesHtmlCollection)
+  scrollToActiveHorizontal()
 }
 
 function prevSlide() {
   selectedImageIndex -= 1
   changeSlide()
-  scrollToActiveHorizontal()
 }
 
 function nextSlide() {
   selectedImageIndex += 1
   changeSlide()
-  scrollToActiveHorizontal()
 }
 
 function renderSlides() {
@@ -45,13 +44,6 @@ function renderSlides() {
       : document.querySelector('.info-images-slider').insertAdjacentHTML('beforeend', `<div class="slide"><img src="${document.location.href + item}"></div>`)
     })
   slidesHtmlCollection = document.querySelectorAll('.slide')
-
-  slidesHtmlCollection.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      console.log('sadsa')
-    })
-  })
-
 }
 
 function renderInfoNavigation() {
@@ -60,7 +52,6 @@ function renderInfoNavigation() {
 
   prevBtn = document.querySelector('#info-btn-prev')
   nextBtn = document.querySelector('#info-btn-next')
-
 
   prevBtn.addEventListener('click', prevSlide)
   nextBtn.addEventListener('click', nextSlide)
@@ -84,14 +75,29 @@ function scrollToActiveHorizontal() {
   document.querySelector('.info-images-slider').style.transform = `rotate(0) translate3d(-${scrollValue}px, 0px, 0px)`
 }
 
+function renderNavigation() {
+  renderInfoNavigation()
+  renderInfoPagination()
+  for (let i = 0; i < slidesHtmlCollection.length; i++) {
+    slidesHtmlCollection[i].addEventListener('click', () => {
+      selectedImageIndex = i
+      changeSlide()
+    })
+    paginationHtmlCollection[i].addEventListener('click', () => {
+      selectedImageIndex = i
+      changeSlide()
+    })
+  }
+}
+
 function infoSliderInit(imagesArray) {
   selectedImageIndex = 0;
   data = imagesArray
   renderSlides()
 
   sliderContainer = document.querySelector('.info-images')
-  renderInfoNavigation()
-  renderInfoPagination()
+  renderNavigation()
+
   setDisabledNavigation(selectedImageIndex, prevBtn, nextBtn, paginationHtmlCollection)
 }
 

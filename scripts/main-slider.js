@@ -56,7 +56,7 @@ function renderPagination() {
 
 function scrollToActiveVertical() {
   const scrollContainer = document.querySelector('.container-open')
-  let scrollValue = htmlCollection[0].offsetHeight * selectedCardIndex
+  let scrollValue = document.querySelector('.card-active').offsetHeight * selectedCardIndex
   scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
 }
 
