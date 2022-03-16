@@ -87,6 +87,16 @@
   100% { opacity: 1; margin-right: -10%;}
 }
 
+//mobile links show
+@keyframes mobile-show-up {
+  0%{
+    margin-top: 100%;
+  }
+  100%{
+    margin-top: 3vw;
+  }
+}
+
 
 @media (max-width: 768px){
   // линии

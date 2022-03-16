@@ -1,0 +1,98 @@
+@import 'variables';
+@import 'animations';
+
+.link-wrapper a {
+  position: relative;
+  font-size: 1.5vw;
+  color: #ffffff;
+  font-family: 'Jura', sans-serif;
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.4vw 0.9vw;
+  &#resume {
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Мое резюме";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+  &#github{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Мой GitHub";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+  &#telegram{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Telegram";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+  &#show-link{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Посмотреть";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+  &#github-project{
+    &:hover {
+      &:before,
+      &:after {
+        @include glitch-text-mixin;
+        content: "Проект на GitHub";
+        top: -1.6vw;
+        left: -2.2vw;
+      }
+      @include glitch-text-animation-mixin
+    }
+  }
+}
+
+
+@media (max-width: 768px) {
+  .link-wrapper{
+    margin: 3vw;
+    animation: mobile-show-up 1.5s cubic-bezier(0.750, 0.130, 0.485, 1.030);
+  }
+  .link-wrapper a {
+    position: relative;
+    font-size: 5.5vw;
+    color: #ffffff;
+    font-family: 'Jura', sans-serif;
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.4vw 1.9vw;
+  }
+
+  //#github{
+  //  padding-left: 100%;
+  //  padding-right: 100%;
+  //}
+}
