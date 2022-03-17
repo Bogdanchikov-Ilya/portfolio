@@ -1,9 +1,10 @@
 import { htmlCollection, selectedCardIndex, openCard } from "./cards.js";
 
-const prevBtn = document.querySelector('#prev')
-const nextBtn = document.querySelector('#next')
+let prevBtn
+let nextBtn
 
 function setDisabledNavigation(index, prevBtn, nextBtn, collection){
+
   (index <= 0)
   ? prevBtn.disabled = true
   :prevBtn.disabled = false;
@@ -11,17 +12,23 @@ function setDisabledNavigation(index, prevBtn, nextBtn, collection){
   (index >= collection.length - 1)
   ? nextBtn.disabled = true
   :nextBtn.disabled = false;
+  console.log('renderPagination')
 }
-// navigation
-prevBtn.addEventListener('click', () => {
-  const prevIndex = selectedCardIndex - 1
-  openCard(htmlCollection[prevIndex], prevIndex)
-})
 
-nextBtn.addEventListener('click', () => {
-  const nextIndex = selectedCardIndex + 1
-  openCard(htmlCollection[nextIndex], nextIndex)
-})
+function initPaginationNavigation() {
+  prevBtn = document.querySelector('#prev')
+  nextBtn = document.querySelector('#next')
+// navigation
+  prevBtn.addEventListener('click', () => {
+    const prevIndex = selectedCardIndex - 1
+    openCard(htmlCollection[prevIndex], prevIndex)
+  })
+
+  nextBtn.addEventListener('click', () => {
+    const nextIndex = selectedCardIndex + 1
+    openCard(htmlCollection[nextIndex], nextIndex)
+  })
+}
 
 document.addEventListener('keydown',(e) => {
   if(selectedCardIndex !== null && selectedCardIndex !== undefined){
@@ -60,4 +67,4 @@ function scrollToActiveVertical() {
   scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
 }
 
-export { setDisabledNavigation, renderPagination, scrollToActiveVertical }
+export { setDisabledNavigation, renderPagination, scrollToActiveVertical, initPaginationNavigation }

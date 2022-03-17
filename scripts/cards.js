@@ -1,4 +1,4 @@
-import {  renderPagination, scrollToActiveVertical } from './main-slider.js'
+import {  renderPagination, scrollToActiveVertical, initPaginationNavigation } from './main-slider.js'
 import { infoSliderInit } from './card-slider.js';
 const data = [
   {
@@ -42,19 +42,30 @@ let htmlCollection;
 let selectedCardIndex = null
 
 function showSlider (status){
+
   if(status) {
-    document.querySelector('.slider-navigation').style.display = 'flex'
-    document.querySelector('.slider-pagination').style.display = 'flex'
+
+    if(!document.querySelector('.main-slider-navigation') && !document.querySelector('.main-slider-pagination')){
+      let elem = '<div class="slider-navigation main-slider-navigation">\n' +
+        '      <button id="prev">↑</button>\n' +
+        '      <button id="next">↓</button>\n' +
+        '    </div>\n' +
+        '    <div class="slider-pagination main-slider-pagination"></div>'
+      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', elem)
+      initPaginationNavigation()
+      renderPagination()
+    }
   }
   else{
     console.log('false sliders selected')
     document.querySelector('.main-slider-navigation').classList.add('close-animation')
     document.querySelector('.main-slider-pagination').classList.add('close-animation')
     setTimeout(() => {
-      document.querySelector('.main-slider-navigation').style.display = 'none'
-      document.querySelector('.main-slider-pagination').style.display = 'none'
       document.querySelector('.main-slider-navigation').classList.remove('close-animation')
       document.querySelector('.main-slider-pagination').classList.remove('close-animation')
+
+      document.querySelector('.main-slider-navigation').remove()
+      document.querySelector('.main-slider-pagination').remove()
     }, 850)
   }
 }
@@ -121,7 +132,6 @@ function openCard(item, index){
   }
   showSlider(true)
   selectedCardIndex = index
-  // setDisabledNavigation()
   renderPagination()
   htmlCollection.forEach(item => {
     item.classList.remove('card-active')

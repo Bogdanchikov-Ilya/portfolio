@@ -213,7 +213,7 @@
 // main slider control
 
 .main-slider-navigation{
-  display: none;
+  display: flex;
   animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
   justify-content: space-between;
@@ -227,7 +227,7 @@
 
 }
 .main-slider-pagination{
-  display: none;
+  display: flex;
   animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
   justify-content: space-between;
