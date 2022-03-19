@@ -1,88 +1,59 @@
 import {  renderPagination, scrollToActiveVertical, initPaginationNavigation } from './main-slider.js'
 import { infoSliderInit } from './card-slider.js';
-const data = [
-  {
-    title: 'Лендинг строительной компании',
-    description: 'Простой лендинг сайта стриотленой компании.' +
-      'Есть адаптив для планшетов и мобильных устройств. ' +
-      'Использовал scss, разбил секции по scss компонентам. ' +
-      'Использовал слайдер Swiper Slider',
-    skills: 'SCSS, Swiper Slider',
-    github: 'https://github.com/Bogdanchikov-Ilya/railway-construction',
-    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
-    images: ['/assets/img/sliders/railway/img.png', '/assets/img/sliders/railway/img_1.png', '/assets/img/sliders/railway/img_2.png', '/assets/img/sliders/railway/img_1.png', '/assets/img/sliders/railway/img_1.png', '/assets/img/sliders/railway/img_1.png', '/assets/img/sliders/railway/img_1.png', '/assets/img/sliders/railway/img_1.png',]
-  },
-  {
-    title: 'Vue + Laravel',
-    description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    skills: 'SCSS, Swiper Slider',
-    github: 'https://github.com/',
-    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
-    images: ['/assets/img/sliders/33333.png', '/assets/img/sliders/33333.png', '/assets/img/sliders/33333.png']
-  },
-  {
-    title: 'Admin - panel',
-    description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    skills: 'SCSS, Swiper Slider',
-    github: 'https://github.com/',
-    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
-    images: ['/assets/img/sliders/33333.png', '/assets/img/sliders/33333.png', '/assets/img/sliders/33333.png']
-  },
-  {
-    title: 'Shop on Nuxt js',
-    description: 'lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem lorem',
-    skills: 'SCSS, Swiper Slider',
-    github: 'https://github.com/',
-    link: 'https://bogdanchikov-ilya.github.io/railway-construction',
-    images: ['/assets/img/sliders/33333.png', '/assets/img/sliders/33333.png', '/assets/img/sliders/33333.png']
-  },
-]
+import data from '../assets/projects-data.js'
 
-let htmlCollection;
-let selectedCardIndex = null
+let htmlCollection,
+  selectedCardIndex,
+  mainSliderPagination,
+  mainSliderNavigation
+
+let cardsContainer = document.querySelector('.cards-container')
+
+function loadCard() {
+  data.forEach((item) => {
+    let htmlElem = `<div class="card"><div class="front"><span>${item.title}</span></div><div class="back"><span id="open-card-link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
+    cardsContainer.insertAdjacentHTML('beforeend', htmlElem)
+  })
+  htmlCollection = document.querySelectorAll('.card')
+}
 
 function showSlider (status){
-
+  mainSliderNavigation = document.querySelector('.main-slider-navigation')
+  mainSliderPagination = document.querySelector('.main-slider-pagination')
   if(status) {
-
-    if(!document.querySelector('.main-slider-navigation') && !document.querySelector('.main-slider-pagination')){
-      let elem = '<div class="slider-navigation main-slider-navigation">\n' +
+    if(!mainSliderNavigation && !mainSliderPagination){
+      let mainSliderNavigation = '<div class="slider-navigation main-slider-navigation">\n' +
         '      <button id="prev">↑</button>\n' +
         '      <button id="next">↓</button>\n' +
-        '    </div>\n' +
-        '    <div class="slider-pagination main-slider-pagination"></div>'
-      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', elem)
+        '    </div>\n'
+      let mainSliderPagination = `<div class="slider-pagination main-slider-pagination"></div>`
+      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderNavigation)
+      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderPagination)
       initPaginationNavigation()
-      renderPagination()
     }
+    renderPagination()
   }
   else{
-    console.log('false sliders selected')
-    document.querySelector('.main-slider-navigation').classList.add('close-animation')
-    document.querySelector('.main-slider-pagination').classList.add('close-animation')
+    mainSliderNavigation.classList.add('close-animation')
+    mainSliderPagination.classList.add('close-animation')
     setTimeout(() => {
-      document.querySelector('.main-slider-navigation').classList.remove('close-animation')
-      document.querySelector('.main-slider-pagination').classList.remove('close-animation')
+      mainSliderNavigation.classList.remove('close-animation')
+      mainSliderPagination.classList.remove('close-animation')
 
-      document.querySelector('.main-slider-navigation').remove()
-      document.querySelector('.main-slider-pagination').remove()
+      mainSliderNavigation.remove()
+      mainSliderPagination.remove()
     }, 850)
   }
 }
 
 function addCloseEvent() {
-  // вешаю события
-  document.addEventListener('keydown', closeSliderOnKeyDown)
-  document.querySelector('.close-btn').addEventListener('click', closeSliderOnClick)
   // функции закрытия
   function close () {
     document.querySelector('.info-block').classList.add('close-animation')
-    // закрываю блок
     document.querySelector('.container-open').classList.add('default-transform')
-    document.querySelector('.container-open').style = null;
     document.querySelector('.card-container-wrapper').classList.remove('open')
-
-    document.querySelector('.cards-container').classList.remove('container-open')
+    document.querySelector('.cards-container').style = null;
+    cardsContainer.classList.remove('container-open')
     setTimeout(() => {
       document.querySelector('.info-block').remove()
     }, 1000)
@@ -90,11 +61,15 @@ function addCloseEvent() {
     htmlCollection.forEach(item => {
       item.classList.remove('card-active')
     })
-
     showSlider(false)
     document.removeEventListener('keydown', closeSliderOnKeyDown)
     selectedCardIndex = null
   }
+
+  // вешаю события
+  document.addEventListener('keydown', closeSliderOnKeyDown)
+  document.querySelector('.close-btn').addEventListener('click', closeSliderOnClick)
+
   function closeSliderOnKeyDown(e){
     if(e.keyCode === 27){
       close()
@@ -105,17 +80,9 @@ function addCloseEvent() {
   }
 }
 
-function loadCard() {
-  data.forEach((item, index) => {
-    let htmlElem = `<div class="card"><div class="front"><span>${item.title}</span></div><div class="back"><span id="open-card-link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
-    document.querySelector('.cards-container').insertAdjacentHTML('beforeend', htmlElem)
-  })
-  htmlCollection = document.querySelectorAll('.card')
-}
-
 function openCard(item, index){
   function addButtons() {
-    // добавляю контейнер для кнопок
+    // добавляю контейгер для кнопок
     document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', `<div class="info-media-btn"></div>`)
     // добавляю кнопки
     let buttonContainer = document.querySelector('.info-media-btn')
@@ -130,15 +97,14 @@ function openCard(item, index){
                          </div>`)
     }
   }
-  showSlider(true)
   selectedCardIndex = index
-  renderPagination()
+  showSlider(true)
   htmlCollection.forEach(item => {
     item.classList.remove('card-active')
   })
   item.classList.add('card-active')
   document.querySelector('.card-container-wrapper').classList.add('open')
-  document.querySelector('.cards-container').classList.remove('default-transform')
+  cardsContainer.classList.remove('default-transform')
 
   // block
   let infoBlock =
@@ -159,7 +125,7 @@ function openCard(item, index){
           </div>`
 
   // открываю карточку детально
-  document.querySelector('.cards-container').classList.add('container-open')
+  cardsContainer.classList.add('container-open')
 
   // добавляю блок с информацией о проекте
   const block = document.querySelector('.info-block')
@@ -197,4 +163,4 @@ function addListenerClickOpenCard(collection) {
   }))
 }
 
-export { loadCard, htmlCollection, selectedCardIndex, addListenerClickOpenCard, openCard, data }
+export { loadCard, htmlCollection, selectedCardIndex, addListenerClickOpenCard, openCard }
