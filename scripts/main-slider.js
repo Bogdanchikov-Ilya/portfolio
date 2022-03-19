@@ -1,10 +1,12 @@
 import { htmlCollection, selectedCardIndex, openCard } from "./cards.js";
 
-let prevBtn
-let nextBtn
+
+let nextBtn,
+  prevBtn,
+  mainSliderPagination,
+  mainSliderNavigation
 
 function setDisabledNavigation(index, prevBtn, nextBtn, collection){
-
   (index <= 0)
   ? prevBtn.disabled = true
   :prevBtn.disabled = false;
@@ -12,13 +14,12 @@ function setDisabledNavigation(index, prevBtn, nextBtn, collection){
   (index >= collection.length - 1)
   ? nextBtn.disabled = true
   :nextBtn.disabled = false;
-  console.log('renderPagination')
 }
 
-function initPaginationNavigation() {
+function renderNavigationEvents() {
   prevBtn = document.querySelector('#prev')
   nextBtn = document.querySelector('#next')
-// navigation
+  // navigation functions
   prevBtn.addEventListener('click', () => {
     const prevIndex = selectedCardIndex - 1
     openCard(htmlCollection[prevIndex], prevIndex)
@@ -67,4 +68,32 @@ function scrollToActiveVertical() {
   scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
 }
 
-export { setDisabledNavigation, renderPagination, scrollToActiveVertical, initPaginationNavigation }
+function showSlider(status) {
+  mainSliderNavigation = document.querySelector('.main-slider-navigation')
+  mainSliderPagination = document.querySelector('.main-slider-pagination')
+  if(status) {
+    if(!mainSliderNavigation && !mainSliderPagination){
+      let mainSliderNavigation = '<div class="slider-navigation main-slider-navigation">\n' +
+        '      <button id="prev">↑</button>\n' +
+        '      <button id="next">↓</button>\n' +
+        '    </div>\n'
+      let mainSliderPagination = `<div class="slider-pagination main-slider-pagination"></div>`
+      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderNavigation)
+      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderPagination)
+      renderNavigationEvents()
+    }
+    renderPagination()
+  } else{
+    mainSliderNavigation.classList.add('close-animation')
+    mainSliderPagination.classList.add('close-animation')
+    setTimeout(() => {
+      mainSliderNavigation.classList.remove('close-animation')
+      mainSliderPagination.classList.remove('close-animation')
+
+      mainSliderNavigation.remove()
+      mainSliderPagination.remove()
+    }, 850)
+  }
+}
+
+export { setDisabledNavigation, scrollToActiveVertical, showSlider }

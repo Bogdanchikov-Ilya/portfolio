@@ -1,4 +1,4 @@
-import { data } from './cards.js'
+import data from '../assets/projects-data.js'
 
 let cardCollection;
 const cardContainer = document.querySelector('.cards-wrapper')

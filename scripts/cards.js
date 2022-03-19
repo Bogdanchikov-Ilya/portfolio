@@ -1,11 +1,9 @@
-import {  renderPagination, scrollToActiveVertical, initPaginationNavigation } from './main-slider.js'
+import {  scrollToActiveVertical, showSlider } from './main-slider.js'
 import { infoSliderInit } from './card-slider.js';
 import data from '../assets/projects-data.js'
 
 let htmlCollection,
-  selectedCardIndex,
-  mainSliderPagination,
-  mainSliderNavigation
+  selectedCardIndex
 
 let cardsContainer = document.querySelector('.cards-container')
 
@@ -15,35 +13,6 @@ function loadCard() {
     cardsContainer.insertAdjacentHTML('beforeend', htmlElem)
   })
   htmlCollection = document.querySelectorAll('.card')
-}
-
-function showSlider (status){
-  mainSliderNavigation = document.querySelector('.main-slider-navigation')
-  mainSliderPagination = document.querySelector('.main-slider-pagination')
-  if(status) {
-    if(!mainSliderNavigation && !mainSliderPagination){
-      let mainSliderNavigation = '<div class="slider-navigation main-slider-navigation">\n' +
-        '      <button id="prev">↑</button>\n' +
-        '      <button id="next">↓</button>\n' +
-        '    </div>\n'
-      let mainSliderPagination = `<div class="slider-pagination main-slider-pagination"></div>`
-      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderNavigation)
-      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderPagination)
-      initPaginationNavigation()
-    }
-    renderPagination()
-  }
-  else{
-    mainSliderNavigation.classList.add('close-animation')
-    mainSliderPagination.classList.add('close-animation')
-    setTimeout(() => {
-      mainSliderNavigation.classList.remove('close-animation')
-      mainSliderPagination.classList.remove('close-animation')
-
-      mainSliderNavigation.remove()
-      mainSliderPagination.remove()
-    }, 850)
-  }
 }
 
 function addCloseEvent() {

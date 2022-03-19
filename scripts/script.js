@@ -1,15 +1,13 @@
 import { typing } from './typing-effect.js'
 import { glitch } from './glitch.js';
 import { addListenerClickOpenCard, loadCard, openCard } from './cards.js';
-import { renderPagination } from './main-slider.js'
 
 function checkWindowWidth() {
   if(window.innerWidth > 768){
     // загружаю карточи
     loadCard()
     addListenerClickOpenCard(document.querySelectorAll('#open-card-link'))
-    // scrollOnKeyDown()
-    // renderPagination()
+
   } else if(window.innerWidth <= 768) {
     let head = document.getElementsByTagName('head')[0];
     let script = document.createElement("script")
