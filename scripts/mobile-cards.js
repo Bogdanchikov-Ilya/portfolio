@@ -23,14 +23,20 @@ data.forEach((item) => {
 })
 cardCollection = document.querySelectorAll('.card')
 
+function deleteActive() {
+  cardCollection.forEach((item) => {
+    if(item.classList.contains('active')){
+      item.classList.remove('active')
+    }
+  })
+}
+
 cardCollection.forEach(item => {
   item.addEventListener('click', () => {
+    document.querySelector('canvas').addEventListener('click', deleteActive)
+    document.querySelector('.header__title').addEventListener('click', deleteActive)
     // удаляю активные классы
-    cardCollection.forEach((item) => {
-      if(item.classList.contains('active')){
-        item.classList.remove('active')
-      }
-    })
+    deleteActive()
     item.classList.add('active')
   })
 })
