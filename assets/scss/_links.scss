@@ -89,5 +89,45 @@
     align-items: center;
     justify-content: center;
     padding: 1.7vw 2.2vw;
+    &#resume {
+      &:hover {
+        &:before,
+        &:after {
+          @include glitch-text-mixin;
+          content: "Мое резюме";
+          padding-left: 13vw;
+          top: -0.4vw;
+          left: -11vw;
+        }
+        @include glitch-text-animation-mixin
+      }
+    }
+    &#github{
+      &:hover {
+        &:before,
+        &:after {
+          @include glitch-text-mixin;
+          content: "Мой GitHub";
+          width: 100%;
+          padding-left: 13vw;
+          top: -0.2vw;
+          left: -11vw;
+        }
+        @include glitch-text-animation-mixin
+      }
+    }
+    &#telegram{
+      &:hover {
+        &:before,
+        &:after {
+          @include glitch-text-mixin;
+          content: "Telegram";
+          padding-left: 13vw;
+          top: -0.4vw;
+          left: -11vw;
+        }
+        @include glitch-text-animation-mixin
+      }
+    }
   }
 }
