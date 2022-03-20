@@ -61,7 +61,6 @@ function renderInfoPagination () {
   if(document.querySelector('.info-slider__pagination')) document.querySelector('.info-slider-pagination').remove()
   let infoSliderPagination = `<div class="info-slider__pagination slider-pagination"></div>`
   sliderContainer.insertAdjacentHTML('beforeend', infoSliderPagination)
-  console.log('after m')
   for (let i = 0; i < data.length; i++){
     (i === selectedImageIndex)
     ? document.querySelector('.info-slider__pagination').insertAdjacentHTML('beforeend', `<div class="active"></div>`)

@@ -64,8 +64,10 @@ function renderPagination() {
 
 function scrollToActiveVertical() {
   const scrollContainer = document.querySelector('.cards__list_open')
-  let scrollValue = document.querySelector('.card_active').offsetHeight * selectedCardIndex
-  scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
+  if(scrollContainer){
+    let scrollValue = document.querySelector('.card_active').offsetHeight * selectedCardIndex
+    scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
+  }
 }
 
 function showSlider(status) {
