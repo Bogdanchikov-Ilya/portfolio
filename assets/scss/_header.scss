@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'animations';
 // lines
-.title-wrapper{
+.header__container{
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -27,7 +27,7 @@
   }
 }
 
-h1{
+.header__title{
   cursor: pointer;
   height: 4vw;
   pointer-events: auto;
@@ -71,7 +71,7 @@ h1{
 
 // media links
 
-.media {
+.header__media {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +84,7 @@ h1{
   }
 }
 
-.link-wrapper{
+.media__item{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -129,7 +129,7 @@ h1{
   header{
     margin-bottom: 4vw;
   }
-  .title-wrapper{
+  .header__container{
     max-width: 100vw;
     margin-top: 5.5vw;
     &::before{
@@ -143,7 +143,7 @@ h1{
       height: 4px;
     }
   }
-  h1{
+  .header__title{
     height: 12vw;
     animation: blink-caret 1.2s step-end infinite;
     margin: auto;
@@ -164,7 +164,7 @@ h1{
       height: 100%;
     }
   }
-  .media {
+  .header__media {
     display: flex;
     flex-wrap: wrap;
     margin-top: 6vw;

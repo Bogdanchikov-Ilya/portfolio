@@ -37,7 +37,7 @@ function nextSlide() {
 
 function renderSlides() {
     if(document.querySelector('.info-images')) document.querySelector('.info-images').remove()
-    document.querySelector('.content-text').insertAdjacentHTML('afterend', contentImages)
+    document.querySelector('.content__text').insertAdjacentHTML('afterend', contentImages)
     data.forEach((item, imageIndex) => {
       (imageIndex === selectedImageIndex)
       ? document.querySelector('.info-images-slider').insertAdjacentHTML('beforeend', `<div class="slide slide-active"><img src="${document.location.href + item}"></div>`)
@@ -47,7 +47,7 @@ function renderSlides() {
 }
 
 function renderInfoNavigation() {
-  let infoSliderNavigation = `<div class="slider-navigation info-slider-navigation"><button id="info-btn-prev">←</button><button id="info-btn-next">→</button></div>`
+  let infoSliderNavigation = `<div class="info-slider-navigation slider-navigation"><button id="info-btn-prev">←</button><button id="info-btn-next">→</button></div>`
   sliderContainer.insertAdjacentHTML('beforeend', infoSliderNavigation)
 
   prevBtn = document.querySelector('#info-btn-prev')
@@ -58,16 +58,16 @@ function renderInfoNavigation() {
 }
 
 function renderInfoPagination () {
-  if(document.querySelector('.info-slider-pagination')) document.querySelector('.info-slider-pagination').remove()
-  let infoSliderPagination = `<div class="slider-pagination info-slider-pagination"></div>`
+  if(document.querySelector('.info-slider__pagination')) document.querySelector('.info-slider-pagination').remove()
+  let infoSliderPagination = `<div class="info-slider__pagination slider-pagination"></div>`
   sliderContainer.insertAdjacentHTML('beforeend', infoSliderPagination)
   console.log('after m')
   for (let i = 0; i < data.length; i++){
     (i === selectedImageIndex)
-    ? document.querySelector('.info-slider-pagination').insertAdjacentHTML('beforeend', `<div class="active"></div>`)
-    : document.querySelector('.info-slider-pagination').insertAdjacentHTML('beforeend', `<div></div>`)
+    ? document.querySelector('.info-slider__pagination').insertAdjacentHTML('beforeend', `<div class="active"></div>`)
+    : document.querySelector('.info-slider__pagination').insertAdjacentHTML('beforeend', `<div></div>`)
   }
-  paginationHtmlCollection = document.querySelector('.info-slider-pagination').getElementsByTagName('*')
+  paginationHtmlCollection = document.querySelector('.info-slider__pagination').getElementsByTagName('*')
 }
 
 function scrollToActiveHorizontal() {

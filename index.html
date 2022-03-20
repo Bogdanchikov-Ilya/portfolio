@@ -5,58 +5,51 @@
   <title>Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <link rel="stylesheet" media="screen" href="styles/style.css">
+  <!--  fonts-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!--  main font-->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!--  main font Cyrillic-->
   <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+  <!--  scripts-->
   <script src="scripts/particles/particles.min.js"></script>
   <script src="scripts/particles/app.js"></script>
   <script src="scripts/script.js" type="module"></script>
-<!--  <script src="scripts/main-slider.js" type="module"></script>-->
-
-
 </head>
 <body>
 
 <!--background-->
-<div id="particles-js"></div>
+<div id="particles-background"></div>
 
 <!--content-->
 <div class="wrapper">
-  <header>
-    <div class="container">
-      <div class="title-wrapper">
-        <h1></h1>
-        <div class="media">
-          <div class="link-wrapper">
-            <a href="https://github.com/Bogdanchikov-Ilya" id="github" target="_blank">
-              Мой GitHub
-            </a>
-          </div>
-          <div class="link-wrapper">
-            <a href="https://lipetsk.hh.ru/resume/5266e0f5ff0907c3e20039ed1f63524f504250" target="_blank" id="resume">Мое резюме</a>
-          </div>
-          <div class="link-wrapper">
-            <a href="https://t.me/krike1" id="telegram">
-              Telegram
-            </a>
-          </div>
+  <header class="header">
+    <div class="header__container container">
+      <h1 class="header__title"></h1>
+      <div class="header__media">
+        <div class="media__item">
+          <a href="https://github.com/Bogdanchikov-Ilya" class="media__link" id="github" target="_blank">
+            Мой GitHub
+          </a>
+        </div>
+        <div class="media__item">
+          <a href="https://lipetsk.hh.ru/resume/5266e0f5ff0907c3e20039ed1f63524f504250" class="media__link" target="_blank" id="resume">Мое резюме</a>
+        </div>
+        <div class="media__item">
+          <a href="https://t.me/krike1" class="media__link" id="telegram">
+            Telegram
+          </a>
         </div>
       </div>
     </div>
   </header>
 
-  <div class="cards-wrapper">
-    <div class="card-container-wrapper">
-      <div class="cards-container default-transform"></div>
+  <div class="cards">
+    <div class="cards__inner">
+      <ul class="cards__list default-transform"></ul>
     </div>
-
   </div>
 </div>
-
-<!-- scripts -->
-<!---->
 </body>
 </html>

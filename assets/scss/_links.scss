@@ -1,7 +1,7 @@
 @import 'variables';
 @import 'animations';
 
-.link-wrapper a {
+.media__item a {
   position: relative;
   font-size: 1.5vw;
   color: #ffffff;
@@ -75,11 +75,11 @@
 
 
 @media (max-width: 768px) {
-  .link-wrapper{
+  .media__item{
     margin: 3vw;
     animation: mobile-show-up 1.5s cubic-bezier(0.750, 0.130, 0.485, 1.030);
   }
-  .link-wrapper a {
+  .media__item a {
     position: relative;
     font-size: 5.5vw;
     color: #ffffff;

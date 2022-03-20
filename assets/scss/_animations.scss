@@ -78,13 +78,13 @@
 }
 
 @keyframes slider-nav-pag-show {
-  from, to { opacity: 0.1; margin-right: -100%; }
-  100% { opacity: 1; margin-right: unset;}
+  from, to { opacity: 1; right: -100%; }
+  100% { opacity: 1; right: 2vw;}
 }
 
 @keyframes slider-nav-pag-reverse {
-  from, to { opacity: 1; margin-right: unset; }
-  100% { opacity: 1; margin-right: -10%;}
+  from, to { opacity: 1; right: 2vw; }
+  100% { opacity: 1; right: -100%;}
 }
 
 //mobile links show

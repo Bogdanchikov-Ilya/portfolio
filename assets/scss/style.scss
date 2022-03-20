@@ -8,7 +8,7 @@
 
 /* ---- particles.js container ---- */
 
-#particles-js{
+#particles-background{
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,7 +36,7 @@
 
 //cards
 
-.cards-wrapper{
+.cards{
   flex: 1 0 auto;
   width: 85vw;
   display: flex;
@@ -45,7 +45,7 @@
   margin: 0 auto;
 }
 
-.cards-container {
+.cards__list {
   width: 85vw;
   margin: auto;
   display: flex;
@@ -54,8 +54,10 @@
   align-items: center;
   transition: 0.9s;
   transform-style: preserve-3d;
+  //height: 80vw;
   &.default-transform {
     transform: rotateX(51deg) rotateZ(-25deg) rotateY(10deg);
+    transform-style: preserve-3d;
   }
 }
 
@@ -154,19 +156,19 @@
   }
 }
 
-.card-container-wrapper{
+.cards__inner{
   position: relative;
   z-index: 10;
   overflow: hidden;
   display: flex;
   align-items: center;
   height: 100%;
-  &.open{
+  &.cards__inner_open{
     height: unset;
   }
 }
 
-.container-open {
+.cards__list_open {
   scroll-behavior: smooth;
   pointer-events: auto;
   width: 17vw;
@@ -176,12 +178,12 @@
   margin: unset;
   //overflow-y: scroll;
   height: 80vh;
+  transform-style: preserve-3d;
   // убираю скроллбар
   &::-webkit-scrollbar {
     width: 0;
     background: transparent;
     -ms-overflow-style: none;
-    scrollbar-width: none;
   }
   .card{
     .front{
@@ -189,7 +191,7 @@
     }
     margin: 0 0 1vw 0;
     box-shadow: none;
-    &.card-active{
+    &.card_active{
       outline: 4px solid white;
       transition: .2s;
       transition-delay: 0.2s;
@@ -212,7 +214,7 @@
 
 // main slider control
 
-.main-slider-navigation{
+.main-slider__navigation{
   display: flex;
   animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
@@ -222,11 +224,13 @@
   right: 2vw;
   pointer-events: auto;
   &.close-animation{
-    animation: 0.85s slider-nav-pag-reverse;
+    top: -13vw;
+    right: 2vw;
+    animation: 1s slider-nav-pag-reverse;
   }
 
 }
-.main-slider-pagination{
+.main-slider__pagination{
   display: flex;
   animation: 0.85s slider-nav-pag-show;
   flex-direction: column;
@@ -235,11 +239,13 @@
   right: 2vw;
   pointer-events: auto;
   &.close-animation{
-    animation: 0.85s slider-nav-pag-reverse;
+    top: -13vw;
+    right: 2vw;
+    animation: 1s slider-nav-pag-reverse;
   }
 }
 
-.info-block{
+.content{
   width: 78%;
   height: 80vh;
   color: white;
@@ -248,7 +254,7 @@
   &.close-animation{
     animation: info-block-reverse 1s cubic-bezier(0.54, 0.06, 0.28, 0.97);
   }
-  .close-btn{
+  .content-close__button{
     pointer-events: auto;
     position: absolute;
     top: -0.3vw;
@@ -299,7 +305,7 @@
     //width:50vw;
     //height: 75.3vh;
   }
-  .info-content-wrapper{
+  .content__inner{
     padding: 1vw;
     color: #ffffff;
     display: flex;
@@ -307,16 +313,16 @@
     justify-content: space-between;
     height: 93%;
   }
-  .content-text{
-    .info-title, .info-skills, .info-description{
+  .content__text{
+    .content__title, .content__skills, .content__description{
       font-family: 'Jura', sans-serif;
       margin-bottom: 0.5vw;
       pointer-events: auto;
     }
-    .info-title{
+    .content__title{
       font-size: 1.7vw;
     }
-    .info-skills, .info-description{
+    .content__skills, .content__description{
       font-size: 1.2vw;
     }
   }
@@ -361,12 +367,12 @@
     }
   }
 
-  .info-media-btn{
+  .content__links{
     pointer-events: auto;
     display: flex;
     align-content: stretch;
     margin-bottom: -1.8vw;
-    .link-wrapper{
+    .media__item{
       margin: 0;
       margin-right: 2vw;
       a{
@@ -385,7 +391,7 @@
   margin: auto;
 }
 
-.info-slider-pagination{
+.info-slider__pagination{
   pointer-events: auto;
   margin: auto;
   display: flex;
@@ -402,11 +408,11 @@
     overflow-y: auto;
     height: 100%;
   }
-  #particles-js{
+  #particles-background{
     position: fixed;
     height: 100%;
   }
-  .cards-wrapper{
+  .cards{
     display: flex;
     flex-direction: column;
   }

@@ -1,8 +1,8 @@
 import data from '../assets/projects-data.js'
 
 let cardCollection;
-const cardContainer = document.querySelector('.cards-wrapper')
-const mediaBlock = document.querySelector('.media')
+const cardContainer = document.querySelector('.cards')
+const mediaBlock = document.querySelector('.header__media')
 
 // добавляю блок с ссылками
 document.querySelector('header').getElementsByClassName('container')[0].appendChild(mediaBlock)

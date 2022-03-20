@@ -46,7 +46,7 @@ document.addEventListener('keydown',(e) => {
 
 function renderPagination() {
   setDisabledNavigation(selectedCardIndex, prevBtn, nextBtn, htmlCollection)
-  const paginationContainer = document.querySelector('.main-slider-pagination')
+  const paginationContainer = document.querySelector('.main-slider__pagination')
   paginationContainer.innerHTML = ''
   for (let i = 0; i < htmlCollection.length; i++) {
     (i === selectedCardIndex)
@@ -54,7 +54,7 @@ function renderPagination() {
     : paginationContainer.insertAdjacentHTML('beforeend', '<div></div>')
   }
   // вешаю клик на каждый эелемент пагинации
-  const paginationCollection = document.querySelector('.main-slider-pagination')
+  const paginationCollection = document.querySelector('.main-slider__pagination')
   Array.from(paginationCollection.children).forEach((child, index) => {
     child.addEventListener('click', () => {
       openCard(htmlCollection[index], index)
@@ -63,23 +63,23 @@ function renderPagination() {
 }
 
 function scrollToActiveVertical() {
-  const scrollContainer = document.querySelector('.container-open')
-  let scrollValue = document.querySelector('.card-active').offsetHeight * selectedCardIndex
+  const scrollContainer = document.querySelector('.cards__list_open')
+  let scrollValue = document.querySelector('.card_active').offsetHeight * selectedCardIndex
   scrollContainer.style.transform = `rotate(0) translate3d(0px, -${scrollValue}px, 0px)`
 }
 
 function showSlider(status) {
-  mainSliderNavigation = document.querySelector('.main-slider-navigation')
-  mainSliderPagination = document.querySelector('.main-slider-pagination')
+  mainSliderNavigation = document.querySelector('.main-slider__navigation')
+  mainSliderPagination = document.querySelector('.main-slider__pagination')
   if(status) {
     if(!mainSliderNavigation && !mainSliderPagination){
-      let mainSliderNavigation = '<div class="slider-navigation main-slider-navigation">\n' +
+      let mainSliderNavigation = '<div class="main-slider__navigation slider-navigation">\n' +
         '      <button id="prev">↑</button>\n' +
         '      <button id="next">↓</button>\n' +
         '    </div>\n'
-      let mainSliderPagination = `<div class="slider-pagination main-slider-pagination"></div>`
-      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderNavigation)
-      document.querySelector('.cards-wrapper').insertAdjacentHTML('beforeend', mainSliderPagination)
+      let mainSliderPagination = `<div class="main-slider__pagination slider-pagination"></div>`
+      document.querySelector('.cards').insertAdjacentHTML('beforeend', mainSliderNavigation)
+      document.querySelector('.cards').insertAdjacentHTML('beforeend', mainSliderPagination)
       renderNavigationEvents()
     }
     renderPagination()
@@ -92,7 +92,7 @@ function showSlider(status) {
 
       mainSliderNavigation.remove()
       mainSliderPagination.remove()
-    }, 850)
+    }, 1000)
   }
 }
 

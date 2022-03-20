@@ -5,7 +5,7 @@ import data from '../assets/projects-data.js'
 let htmlCollection,
   selectedCardIndex
 
-let cardsContainer = document.querySelector('.cards-container')
+let cardsContainer = document.querySelector('.cards__list')
 
 function loadCard() {
   data.forEach((item) => {
@@ -18,17 +18,17 @@ function loadCard() {
 function addCloseEvent() {
   // функции закрытия
   function close () {
-    document.querySelector('.info-block').classList.add('close-animation')
-    document.querySelector('.container-open').classList.add('default-transform')
-    document.querySelector('.card-container-wrapper').classList.remove('open')
-    document.querySelector('.cards-container').style = null;
-    cardsContainer.classList.remove('container-open')
+    document.querySelector('.content').classList.add('close-animation')
+    document.querySelector('.cards__list').classList.add('default-transform')
+    document.querySelector('.cards__inner').classList.remove('cards__inner_open')
+    document.querySelector('.cards__list').style = null;
+    cardsContainer.classList.remove('cards__list_open')
     setTimeout(() => {
-      document.querySelector('.info-block').remove()
+      document.querySelector('.content').remove()
     }, 1000)
     // убираю активнй класс карточки
     htmlCollection.forEach(item => {
-      item.classList.remove('card-active')
+      item.classList.remove('card_active')
     })
     showSlider(false)
     document.removeEventListener('keydown', closeSliderOnKeyDown)
@@ -37,7 +37,7 @@ function addCloseEvent() {
 
   // вешаю события
   document.addEventListener('keydown', closeSliderOnKeyDown)
-  document.querySelector('.close-btn').addEventListener('click', closeSliderOnClick)
+  document.querySelector('.content-close__button').addEventListener('click', closeSliderOnClick)
 
   function closeSliderOnKeyDown(e){
     if(e.keyCode === 27){
@@ -52,16 +52,16 @@ function addCloseEvent() {
 function openCard(item, index){
   function addButtons() {
     // добавляю контейгер для кнопок
-    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', `<div class="info-media-btn"></div>`)
+    document.querySelector('.content__inner').insertAdjacentHTML('beforeend', `<div class="content__links"></div>`)
     // добавляю кнопки
-    let buttonContainer = document.querySelector('.info-media-btn')
+    let buttonContainer = document.querySelector('.content__links')
     if (data[index].link) {
-      buttonContainer.insertAdjacentHTML('beforeend', `<div class="link-wrapper">
+      buttonContainer.insertAdjacentHTML('beforeend', `<div class="links__item media__item">
                          <a href="${data[index].link}" id="show-link" target="_blank">Посмотреть</a>
                        </div>`)
     }
     if (data[index].github) {
-      buttonContainer.insertAdjacentHTML('beforeend', `<div class="link-wrapper">
+      buttonContainer.insertAdjacentHTML('beforeend', `<div class="links__item media__item">
                             <a href="${data[index].github}" id="github-project" target="_blank">Проект на GitHub</a>
                          </div>`)
     }
@@ -69,35 +69,35 @@ function openCard(item, index){
   selectedCardIndex = index
   showSlider(true)
   htmlCollection.forEach(item => {
-    item.classList.remove('card-active')
+    item.classList.remove('card_active')
   })
-  item.classList.add('card-active')
-  document.querySelector('.card-container-wrapper').classList.add('open')
+  item.classList.add('card_active')
+  document.querySelector('.cards__inner').classList.add('cards__inner_open')
   cardsContainer.classList.remove('default-transform')
 
   // block
   let infoBlock =
-    `<div class="info-block">
-        <div class="close-btn">
+    `<div class="content">
+        <div class="content-close__button">
           <span></span>
           <span></span>
         </div>
-        <div class="info-content-wrapper">
+        <div class="content__inner">
           
         </div>
       </div>`;
 
-  const textContent = `<div class="content-text">
-            <h2 class="info-title">${data[index].title}</h2>
-            <p class="info-description">${data[index].description}</p>
-            <span class="info-skills">${data[index].skills}</span>
+  const textContent = `<div class="content__text">
+            <h2 class="content__title">${data[index].title}</h2>
+            <p class="content__description">${data[index].description}</p>
+            <span class="content__skills">${data[index].skills}</span>
           </div>`
 
   // открываю карточку детально
-  cardsContainer.classList.add('container-open')
+  cardsContainer.classList.add('cards__list_open')
 
   // добавляю блок с информацией о проекте
-  const block = document.querySelector('.info-block')
+  const block = document.querySelector('.content')
   if (block) {
     block.remove()
     scrollToActiveVertical()
@@ -106,14 +106,14 @@ function openCard(item, index){
       scrollToActiveVertical()
     }, 1000)
   }
-  document.querySelector('.cards-wrapper').insertAdjacentHTML('afterbegin', infoBlock)
+  document.querySelector('.cards').insertAdjacentHTML('afterbegin', infoBlock)
 
   // вешаю фунцкию на кнопу закрытия
   addCloseEvent()
 
   // добавляю текст
   if (data[index].description) {
-    document.querySelector('.info-content-wrapper').insertAdjacentHTML('beforeend', textContent)
+    document.querySelector('.content__inner').insertAdjacentHTML('beforeend', textContent)
   }
 
   // добавляю слайдер с картинкми
