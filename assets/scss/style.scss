@@ -78,8 +78,8 @@
   cursor: pointer;
   transform-style: preserve-3d;
   pointer-events: auto;
-  .front,
-  .back{
+  .front-card,
+  .back-card{
     height: 100%;
     width: 100%;
     transform-style: preserve-3d;
@@ -102,10 +102,10 @@
       word-wrap: break-word;
     }
   }
-  .front{
+  .front-card{
     pointer-events: none !important;
   }
-  .back{
+  .back-card{
     display: flex;
     flex-wrap: wrap;
     background: transparent;
@@ -186,7 +186,7 @@
     -ms-overflow-style: none;
   }
   .card{
-    .front{
+    .front-card{
       pointer-events: auto !important;
     }
     margin: 0 0 1vw 0;
@@ -423,14 +423,16 @@
     height: 55vw;
     background: transparent;
     box-shadow: none;
-    .front{
+    //outline: 0.5vw solid white;
+    .front-card{
+      outline: 0.4vw solid white;
       background: inherit;
       span{
         padding: 3vw;
         font-size: 7vw;
       }
     }
-    .back{
+    .back-card{
       a, span{
         font-size: 7vw;
         outline: 0.1vw solid white;
@@ -448,11 +450,12 @@
       transform-style: preserve-3d;
       transition-delay: 0.25s;
       box-shadow: none;
+      outline: 0.5vw solid $main-color;
       //border: none;
-      outline: none;
+      //outline: none;
       border: none;
-      .back{
-        outline: 0.25vw solid $main-color;
+      .back-card{
+        outline: 0.4vw solid $main-color;
         a, span{
           outline: 0.1vw solid $main-color;
         }

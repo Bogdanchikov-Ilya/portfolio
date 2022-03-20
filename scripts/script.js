@@ -6,7 +6,7 @@ function checkWindowWidth() {
   if(window.innerWidth > 768){
     // загружаю карточи
     loadCard()
-    addListenerClickOpenCard(document.querySelectorAll('#open-card-link'))
+    addListenerClickOpenCard(document.querySelectorAll('#card-open__link'))
 
   } else if(window.innerWidth <= 768) {
     let head = document.getElementsByTagName('head')[0];

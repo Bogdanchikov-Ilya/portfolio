@@ -9,7 +9,7 @@ let cardsContainer = document.querySelector('.cards__list')
 
 function loadCard() {
   data.forEach((item) => {
-    let htmlElem = `<div class="card"><div class="front"><span>${item.title}</span></div><div class="back"><span id="open-card-link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
+    let htmlElem = `<div class="card"><div class="front-card"><span>${item.title}</span></div><div class="back-card"><span id="card-open__link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
     cardsContainer.insertAdjacentHTML('beforeend', htmlElem)
   })
   htmlCollection = document.querySelectorAll('.card')
@@ -125,7 +125,7 @@ function openCard(item, index){
 
 function addListenerClickOpenCard(collection) {
   collection.forEach((item, index) => item.addEventListener('click',() => {
-    addListenerClickOpenCard(document.querySelectorAll('.front'))
+    addListenerClickOpenCard(document.querySelectorAll('.front-card'))
     if(index !== selectedCardIndex){
       openCard(htmlCollection[index], index)
     }

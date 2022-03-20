@@ -18,7 +18,7 @@ defaultContainer.className = 'container'
 cardContainer.appendChild(defaultContainer)
 
 data.forEach((item) => {
-  let htmlElem = `<div class="card"><div class="front"><span>${item.title}</span></div><div class="back"><a href="${item.link}" target="_blank">Перейти</a><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
+  let htmlElem = `<div class="card"><div class="front-card"><span>${item.title}</span></div><div class="back-card"><a href="${item.link}" target="_blank">Перейти</a><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
   cardContainer.getElementsByClassName('container')[0].insertAdjacentHTML('beforeend', htmlElem)
 })
 cardCollection = document.querySelectorAll('.card')
