@@ -32,12 +32,9 @@ function addCloseEvent() {
     })
     showSlider(false)
     document.removeEventListener('keydown', closeSliderOnKeyDown)
+    document.querySelector('.header__title').removeEventListener('click', close)
     selectedCardIndex = null
   }
-
-  // вешаю события
-  document.addEventListener('keydown', closeSliderOnKeyDown)
-  document.querySelector('.content-close__button').addEventListener('click', closeSliderOnClick)
 
   function closeSliderOnKeyDown(e){
     if(e.keyCode === 27){
@@ -47,6 +44,11 @@ function addCloseEvent() {
   function closeSliderOnClick(e){
     close()
   }
+
+  // вешаю события
+  document.addEventListener('keydown', closeSliderOnKeyDown)
+  document.querySelector('.content-close__button').addEventListener('click', closeSliderOnClick)
+  document.querySelector('.header__title').addEventListener('click', close)
 }
 
 function openCard(item, index){
