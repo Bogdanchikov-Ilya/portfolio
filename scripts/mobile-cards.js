@@ -2,10 +2,6 @@ import data from '../assets/projects-data.js'
 
 let cardCollection;
 const cardContainer = document.querySelector('.cards')
-const mediaBlock = document.querySelector('.header__media')
-
-// добавляю блок с ссылками
-document.querySelector('header').getElementsByClassName('container')[0].appendChild(mediaBlock)
 
 // удаляю лишние обертки
 while (cardContainer.firstChild){

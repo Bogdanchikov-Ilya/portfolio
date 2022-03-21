@@ -76,6 +76,9 @@
 
 @media (max-width: 768px) {
   .media__item{
+    //margin-top: 3vw;
+    //margin-left:3vw;
+    //margin-right: 3vw;
     margin: 3vw;
     animation: mobile-show-up 1.5s cubic-bezier(0.750, 0.130, 0.485, 1.030);
   }
