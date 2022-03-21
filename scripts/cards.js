@@ -19,8 +19,8 @@ function addCloseEvent() {
   // функции закрытия
   function close () {
     document.querySelector('.content').classList.add('close-animation')
-    document.querySelector('.cards__list').classList.add('default-transform')
     document.querySelector('.cards__inner').classList.remove('cards__inner_open')
+    document.querySelector('.cards__list').classList.add('default-transform')
     document.querySelector('.cards__list').style = null;
     cardsContainer.classList.remove('cards__list_open')
     setTimeout(() => {
