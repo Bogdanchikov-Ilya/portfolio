@@ -9,7 +9,7 @@ let cardsContainer = document.querySelector('.cards__list')
 
 function loadCard() {
   data.forEach((item) => {
-    let htmlElem = `<div class="card"><div class="front-card"><span>${item.title}</span></div><div class="back-card"><span id="card-open__link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png"/>GitHub</a><div></div>`
+    let htmlElem = `<div class="card"><div class="front-card"><span>${item.title}</span></div><div class="back-card"><span id="card-open__link">Подробнее</span><a href="${item.github}" target="_blank"><img src="https://img.icons8.com/ios-filled/30/ffffff/github-2.png" alt="GitHub"/>GitHub</a><div></div>`
     cardsContainer.insertAdjacentHTML('beforeend', htmlElem)
   })
   htmlCollection = document.querySelectorAll('.card')
@@ -41,7 +41,7 @@ function addCloseEvent() {
       close()
     }
   }
-  function closeSliderOnClick(e){
+  function closeSliderOnClick(){
     close()
   }
 
